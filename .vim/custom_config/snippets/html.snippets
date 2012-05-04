@@ -1,0 +1,19 @@
+##Custom html snippets for Ultisnips
+#Extend html snippets
+extends html
+
+snippet label "form label"
+<label for="${1:input}" class="${2:string}">${0}</label>
+     <input type="$2" name="${3}" value="${4}" id="$1" class="$2" />
+     <br />
+endsnippet
+
+snippet hotspot "cfc hotspot"
+                <div data-xpos="${1:x}" data-ypos="${2:y}" id="${3:id}" class="hotspot">
+                    <a href=""><span>+</span></a>
+                    <div class="info-box" style="display:none">
+                        <h1>${4:text}</h1>
+                        <p>${5:description}</p>
+                    </div>
+                </div>
+endsnippet

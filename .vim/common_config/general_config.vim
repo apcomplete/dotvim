@@ -51,9 +51,6 @@
 " match indentation of previous line
   set autoindent
 
-" perform autoindenting based on filetype plugin
-  filetype plugin indent on
-
 " don't blink the cursor
   set guicursor=a:blinkon0
 

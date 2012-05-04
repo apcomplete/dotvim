@@ -1,9 +1,8 @@
+" remap leader to ,
+  let mapleader = ','
+
 " get out of insert mode with cmd-i
   imap <D-i> <Esc>
-
-" easy wrap toggling
-  nmap <Leader>w :set wrap!<cr>
-  nmap <Leader>W :set nowrap<cr>
 
 " shortcut to save all
   nmap <Leader>ss :wa<cr>
