@@ -1,9 +1,6 @@
 " remap leader to ,
   let mapleader = ','
 
-" get out of insert mode with cmd-i
-  imap <D-i> <Esc>
-
 " shortcut to save all
   nmap <Leader>ss :wa<cr>
 
@@ -12,10 +9,6 @@
 
 " go to the alternate file (previous buffer) with g-enter
   nmap g 
-
-" shortcuts for frequenly used files
-  nmap gs :e db/schema.rb<cr>
-  nmap gr :e config/routes.rb<cr>
 
 " insert blank lines without going into insert mode
   nmap go o<esc>
@@ -40,9 +33,6 @@
 
 " select the lines which were just pasted
   nnoremap vv `[V`]
-
-" clean up trailing whitespace
-  map <Leader>c :%s/\s\+$<cr>
 
 " compress excess whitespace on current line
   map <Leader>e :s/\v(\S+)\s+/\1 /<cr>:nohl<cr>

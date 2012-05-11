@@ -15,7 +15,10 @@
   au BufLeave * setlocal colorcolumn=0 
 
   au FileType php setlocal ts=4 sts=4 sw=4
-  au FileType html setlocal ts=4 sts=4 sw=4
+  au FileType html setlocal ts=2 sts=2 sw=2
+
+" Use php syntax for html files
+  au FileType html setlocal syntax=php
 
 "use relative line numbering
   au BufEnter * set relativenumber
@@ -28,12 +31,6 @@
 
 "autocompletion list
   set wildmode=list:longest
-
-" allow backspacing over everything in insert mode
-  set backspace=indent,eol,start
-
-" incremental searching
-  set incsearch
 
 " wrap lines
   set wrap!

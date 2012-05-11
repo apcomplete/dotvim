@@ -4,10 +4,6 @@
 " enable syntax highlighting
   syntax on
 
-" default color scheme
-  set background=dark
-  color twilight2
-
 " don't wrap long lines
   set nowrap
 
@@ -89,9 +85,6 @@
 
 " have the mouse enabled all the time
   set mouse=a
-
-" use tab-complete to see a list of possiblities when entering commands
-  set wildmode=list:longest,full
 
 " allow lots of tabs
   set tabpagemax=20

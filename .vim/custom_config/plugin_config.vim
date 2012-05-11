@@ -22,4 +22,6 @@ filetype off
   Bundle "git://github.com/sjl/vim-sparkup.git"
 
   Bundle 'git://git.wincent.com/command-t.git'
+
+  Bundle 'git://github.com/padgetap/html_entities_helper.vim.git'
 filetype plugin indent on

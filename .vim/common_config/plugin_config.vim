@@ -17,11 +17,6 @@ filetype off
     augroup END
 
 
-" Markdown preview to quickly preview markdown files
-  Bundle "git://github.com/maba/vim-markdown-preview.git"
-  map <buffer> <Leader>mp :Mm<CR>
-
-
 " NERDTree for project drawer
   Bundle "git://github.com/scrooloose/nerdtree.git"
     let NERDTreeHijackNetrw = 0
@@ -50,10 +45,6 @@ filetype off
     map <Leader>a :Tabularize<space>
 
 
-" ZoomWin to fullscreen a particular buffer without losing others
-  Bundle "git://github.com/vim-scripts/ZoomWin.git"
-    map <Leader>z :ZoomWin<CR>
-
 " Unimpaired for keymaps for quicky manipulating lines and files
   Bundle "git://github.com/tpope/vim-unimpaired.git"
     " Bubble single lines
@@ -70,18 +61,6 @@ filetype off
     let g:syntastic_enable_signs=1
     let g:syntastic_quiet_warnings=1
     let g:syntastic_disabled_filetypes = ['sass']
-
-
-" gist-vim for quickly creating gists
-  Bundle "git://github.com/mattn/gist-vim.git"
-    if has("mac")
-      let g:gist_clip_command = 'pbcopy'
-    elseif has("unix")
-      let g:gist_clip_command = 'xclip -selection clipboard'
-    endif
-
-    let g:gist_detect_filetype = 1
-    let g:gist_open_browser_after_post = 1
 
 
 " gundo for awesome undo tree visualization
