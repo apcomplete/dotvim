@@ -4,9 +4,6 @@
 " enable syntax highlighting
   syntax on
 
-" don't wrap long lines
-  set nowrap
-
 " show commands as we type them
   set showcmd
 

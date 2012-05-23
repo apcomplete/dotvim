@@ -26,9 +26,6 @@
 "show line numbers in nerdtree
   let NERDTreeShowLineNumbers = 1
 
-"override default behavior to allow unsaved buffers to be hidden
-  set hidden
-
 "autocompletion list
   set wildmode=list:longest
 

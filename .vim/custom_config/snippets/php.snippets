@@ -89,25 +89,3 @@ for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++})
     ${4}
 }
 endsnippet
-
-snippet phpforeach "phpforeach"
-<?php foreach ($${1:variable} as $${2:key}): ?> 
-    ${3}
-<?php endforeach ?>
-endsnippet
-
-snippet phpforeachk "phpforeachk"
-<?php foreach ($${1:variable} as $${2:key} => $${3:val}): ?>
-    ${4}
-<?php endforeach ?>
-endsnippet
-
-snippet phpif "phpif"
-<?php if (${1:/*condition*/}): ?>
-    ${2}
-<?php endif ?>
-endsnippet
-
-snippet echo "echo" !w
-<?php echo ${1:variable} ?>
-endsnippet

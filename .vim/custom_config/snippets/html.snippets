@@ -17,3 +17,25 @@ snippet hotspot "cfc hotspot"
                     </div>
                 </div>
 endsnippet
+
+snippet foreach "foreach"
+<?php foreach ($${1:variable} as $${2:key}): ?> 
+    ${3}
+<?php endforeach ?>
+endsnippet
+
+snippet foreachk "foreachk"
+<?php foreach ($${1:variable} as $${2:key} => $${3:val}): ?>
+    ${4}
+<?php endforeach ?>
+endsnippet
+
+snippet if "if"
+<?php if (${1:/*condition*/}): ?>
+    ${2}
+<?php endif ?>
+endsnippet
+
+snippet echo "echo" !w
+<?php echo ${1:variable} ?>
+endsnippet

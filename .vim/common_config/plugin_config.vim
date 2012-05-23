@@ -3,19 +3,7 @@ filetype off
 " install plugins.
 
 " Plugins requiring no additional configuration or keymaps
-  Bundle "git://github.com/tpope/vim-haml.git"
-  Bundle "git://github.com/pangloss/vim-javascript.git"
-  Bundle "git://github.com/vim-scripts/L9.git"
   Bundle "git://github.com/tpope/vim-repeat.git"
-
-" Markdown syntax highlighting
-  Bundle "git://github.com/tpope/vim-markdown.git"
-    augroup mkd
-      autocmd BufNewFile,BufRead *.mkd      set ai formatoptions=tcroqn2 comments=n:> filetype=markdown
-      autocmd BufNewFile,BufRead *.md       set ai formatoptions=tcroqn2 comments=n:> filetype=markdown
-      autocmd BufNewFile,BufRead *.markdown set ai formatoptions=tcroqn2 comments=n:> filetype=markdown
-    augroup END
-
 
 " NERDTree for project drawer
   Bundle "git://github.com/scrooloose/nerdtree.git"
@@ -70,10 +58,4 @@ filetype off
 
 " surround for adding surround 'physics'
   Bundle "git://github.com/tpope/vim-surround.git"
-    " # to surround with ruby string interpolation
-    let g:surround_35 = "#{\r}"
-    " - to surround with no-output erb tag
-    let g:surround_45 = "<% \r %>"
-    " = to surround with output erb tag
-    let g:surround_61 = "<%= \r %>"
 filetype plugin indent on
