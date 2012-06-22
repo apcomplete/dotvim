@@ -34,8 +34,8 @@
 " select the lines which were just pasted
   nnoremap vv `[V`]
 
-" compress excess whitespace on current line
-  map <Leader>e :s/\v(\S+)\s+/\1 /<cr>:nohl<cr>
+" clean up trailing whitespace map 
+  map <Leader>e :%s/\s\+$<cr>
 
 " delete all buffers
   map <Leader>d :bufdo bd<cr>

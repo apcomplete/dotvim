@@ -20,6 +20,12 @@ filetype off
   Bundle "git://github.com/scrooloose/nerdcommenter.git"
 
   Bundle "git://github.com/sjl/vim-sparkup.git"
+  augroup sparkup_types
+    " Remove ALL autocommands of the current group.
+    autocmd!
+    " Add sparkup to new filetypes
+    autocmd FileType mako,php runtime! ftplugin/html/sparkup.vim
+  augroup END
 
   Bundle 'git://git.wincent.com/command-t.git'
 

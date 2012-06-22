@@ -33,4 +33,4 @@
   set wildmode=list:longest
 
 " wrap lines
-  set wrap!
+  set wrap
