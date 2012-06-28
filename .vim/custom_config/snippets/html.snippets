@@ -2,6 +2,30 @@
 #Extend html snippets
 extends html
 
+snippet control "form control"
+<div class="control-group">
+    <label for="${1:input}"
+      class="${2:text}"
+    <div class="controls">
+      ${3}
+    </div>
+</div>
+endsnippet
+
+snippet input "Bootstrap form input"
+<div class="control-group">
+    <label for="${1:input}"
+      class="${2:text}"
+      >${3}</label>
+    <div class="controls">
+      <input id="$1" name="${4}"
+        type="$2"
+        value="${5}"
+        />
+    </div>
+</div>
+endsnippet
+
 snippet label "form label"
 <label for="${1:input}" class="${2:string}">${0}</label>
      <input type="$2" name="${3}" value="${4}" id="$1" class="$2" />
