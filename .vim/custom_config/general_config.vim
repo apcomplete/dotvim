@@ -3,7 +3,7 @@
 
 " MASS is JS
   au BufNewFile,BufRead *.xjs set ai filetype=javascript
-  au BufNewFile,BufRead *.ejs set ai filetype=html
+  au BufNewFile,BufRead *.ejs set ai filetype=html.javascript
   au BufNewFile,BufRead *.mak set ai filetype=mako
   
 " Show Git diff in window split when commiting
