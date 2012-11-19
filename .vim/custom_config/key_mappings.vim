@@ -16,3 +16,9 @@
 
 " Select all
   nmap <C-a> ggVG
+
+"Open the taglist
+  nnoremap <silent> ,T :TagbarToggle<CR>
+
+"Save using sudo access
+  cmap w!! %!sudo tee > /dev/null %

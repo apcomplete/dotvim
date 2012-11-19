@@ -1,16 +1,21 @@
 filetype off
-" Custom configuration of plugins
-  Bundle "git://github.com/rickharris/vim-monokai.git"
-    "enable 256 colors
-    set t_Co=256
+
+  "enable 256 colors
+  set t_Co=256
+
+  "Custom configuration of plugins
+  "Bundle "git://github.com/rickharris/vim-monokai.git"
     "use monokai colorscheme
-    colorscheme monokai
+    "colorscheme monokai
+  "Bundle '29decibel/codeschool-vim-theme'
+    "colorscheme codeschool
+  colorscheme railscasts
 
   Bundle "git://github.com/vim-scripts/UltiSnips.git"
     "Ultisnips advance using tab instead of <c-j>
-    let g:UltiSnipsExpandTrigger="<tab>" 
-    let g:UltiSnipsJumpForwardTrigger="<tab>" 
-    let g:UltiSnipsJumpBackwardTrigger="<s-tab>" 
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<tab>"
+    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
     "Ultisnips add custom snippets folder
     let g:UltiSnipsSnippetDirectories=["bundle/UltiSnips/UltiSnips","custom_config/snippets"]
@@ -32,5 +37,9 @@ filetype off
   Bundle 'git://github.com/padgetap/html_entities_helper.vim.git'
 
   Bundle 'git://github.com/sophacles/vim-bundle-mako.git'
+
+  Bundle 'git://github.com/kchmck/vim-coffee-script.git'
+
+  Bundle 'git://github.com/majutsushi/tagbar'
 
 filetype plugin indent on
