@@ -14,9 +14,6 @@
 " NERDTree mapping
   map <leader>w :NERDTreeToggle<CR>
 
-" Select all
-  nmap <C-a> ggVG
-
 "Open the taglist
   nnoremap <silent> ,T :TagbarToggle<CR>
 
