@@ -4,11 +4,7 @@ filetype off
   set t_Co=256
 
   "Custom configuration of plugins
-  "Bundle "git://github.com/rickharris/vim-monokai.git"
-    "use monokai colorscheme
-    "colorscheme monokai
-  "Bundle '29decibel/codeschool-vim-theme'
-    "colorscheme codeschool
+  "http://www.vim.org/scripts/script.php?script_id=2175
   colorscheme railscasts
 
   Bundle "git://github.com/vim-scripts/UltiSnips.git"
@@ -25,18 +21,19 @@ filetype off
   Bundle "git://github.com/scrooloose/nerdcommenter.git"
 
   Bundle "git://github.com/sjl/vim-sparkup.git"
-  augroup sparkup_types
-    " Remove ALL autocommands of the current group.
-    autocmd!
-    " Add sparkup to new filetypes
-    autocmd FileType mako,php runtime! ftplugin/html/sparkup.vim
-  augroup END
+    augroup sparkup_types
+      " Remove ALL autocommands of the current group.
+      autocmd!
+      " Add sparkup to new filetypes
+      autocmd FileType mako,php runtime! ftplugin/html/sparkup.vim
+    augroup END
 
   Bundle 'git://git.wincent.com/command-t.git'
 
   Bundle 'git://github.com/apcomplete/html_entities_helper.vim.git'
 
   Bundle 'git://github.com/kchmck/vim-coffee-script.git'
+    au BufNewFile,BufRead *.coffee set filetype=coffee
 
   Bundle 'git://github.com/majutsushi/tagbar'
 
