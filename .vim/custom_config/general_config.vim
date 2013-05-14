@@ -5,7 +5,7 @@
   au BufNewFile,BufRead *.ejs set ai filetype=html
   au BufNewFile,BufRead *.mak set ai filetype=mako
   au BufNewFile,BufRead Guardfile set ai filetype=ruby
-  
+
 " Show Git diff in window split when commiting
   au FileType gitcommit DiffGitCached | wincmd L | wincmd p
 
@@ -14,7 +14,7 @@
 
   au BufEnter * setlocal cursorline
   au BufLeave * setlocal nocursorline
-  au BufLeave * setlocal colorcolumn=0 
+  au BufLeave * setlocal colorcolumn=0
 
   set expandtab ts=4 sts=4 sw=4
   au FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
