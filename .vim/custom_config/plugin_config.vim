@@ -34,7 +34,7 @@ filetype off
 
   Bundle 'git://git.wincent.com/command-t.git'
 
-  Bundle 'git://github.com/padgetap/html_entities_helper.vim.git'
+  Bundle 'git://github.com/apcomplete/html_entities_helper.vim.git'
 
   Bundle 'git://github.com/sophacles/vim-bundle-mako.git'
 
