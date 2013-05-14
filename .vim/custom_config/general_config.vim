@@ -3,6 +3,7 @@
 
   au BufNewFile,BufRead *.xjs set ai filetype=javascript
   au BufNewFile,BufRead *.ejs set ai filetype=html
+  au BufNewFile,BufRead *.rb set ai filetype=rails.ruby
   au BufNewFile,BufRead *.mak set ai filetype=mako
   au BufNewFile,BufRead Guardfile set ai filetype=ruby
 
