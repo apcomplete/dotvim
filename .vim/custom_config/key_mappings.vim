@@ -8,9 +8,6 @@
   map <MiddleMouse> <Nop>
   imap <MiddleMouse> <Nop>
 
-" Clear highlighting for search
-  noremap <silent><Leader>/ :nohls<CR>
-
 " NERDTree mapping
   map <leader>w :NERDTreeToggle<CR>
 
