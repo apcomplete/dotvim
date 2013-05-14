@@ -36,10 +36,10 @@ filetype off
 
   Bundle 'git://github.com/apcomplete/html_entities_helper.vim.git'
 
-  Bundle 'git://github.com/sophacles/vim-bundle-mako.git'
-
   Bundle 'git://github.com/kchmck/vim-coffee-script.git'
 
   Bundle 'git://github.com/majutsushi/tagbar'
+
+  Bundle 'git://github.com/tpope/vim-endwise.git'
 
 filetype plugin indent on
