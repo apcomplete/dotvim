@@ -12,7 +12,6 @@ filetype off
     nmap <leader>w :NERDTreeToggle<CR>
     nmap g :NERDTree \| NERDTreeToggle \| NERDTreeFind<CR>
 
-
 " Tabular for aligning text
   Bundle "git://github.com/godlygeek/tabular.git"
     function! CustomTabularPatterns()
@@ -32,7 +31,6 @@ filetype off
     " shortcut to align text with Tabular
     map <Leader>a :Tabularize<space>
 
-
 " Unimpaired for keymaps for quicky manipulating lines and files
   Bundle "git://github.com/tpope/vim-unimpaired.git"
     " Bubble single lines
@@ -43,19 +41,23 @@ filetype off
     vmap <C-Up> [egv
     vmap <C-Down> ]egv
 
-
 " Syntastic for catching syntax errors on save
   Bundle "git://github.com/scrooloose/syntastic.git"
     let g:syntastic_enable_signs=1
     let g:syntastic_quiet_warnings=1
     let g:syntastic_disabled_filetypes = ['sass']
 
-
 " gundo for awesome undo tree visualization
   Bundle "git://github.com/sjl/gundo.vim.git"
     map <Leader>h :GundoToggle<CR>
 
-
 " surround for adding surround 'physics'
   Bundle "git://github.com/tpope/vim-surround.git"
+    " # to surround with ruby string interpolation
+    let g:surround_35 = "#{\r}"
+    " - to surround with no-output erb tag
+    let g:surround_45 = "<% \r %>"
+    " = to surround with output erb tag
+    let g:surround_61 = "<%= \r %>"
+
 filetype plugin indent on
