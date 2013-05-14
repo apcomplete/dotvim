@@ -13,15 +13,10 @@
   au FileType text setlocal textwidth=78
 
   au BufEnter * setlocal cursorline
-  au BufLeave * setlocal nocursorline
   au BufLeave * setlocal colorcolumn=0
 
-  set expandtab ts=4 sts=4 sw=4
-  au FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
-  au FileType eruby setlocal ts=2 sts=2 sw=2 expandtab
-  au FileType html setlocal ts=2 sts=2 sw=2 expandtab
-  au FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
-  au FileType coffee setlocal ts=2 sts=2 sw=2 expandtab
+  set expandtab ts=2 sts=2 sw=2
+  au FileType php setlocal ts=4 sts=4 sw=4 expandtab
 
 " Use php syntax for html files
   au FileType html setlocal syntax=php
