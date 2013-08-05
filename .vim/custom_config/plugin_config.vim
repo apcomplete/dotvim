@@ -17,6 +17,7 @@ filetype off
     let g:UltiSnipsSnippetDirectories=["bundle/UltiSnips/UltiSnips","custom_config/snippets"]
 
   Bundle "git://github.com/vim-scripts/bufexplorer.zip.git"
+  "7.2.8
 
   Bundle "git://github.com/scrooloose/nerdcommenter.git"
 
