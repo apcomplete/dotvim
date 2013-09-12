@@ -5,6 +5,7 @@
   au BufNewFile,BufRead *.ejs set ai filetype=html
   au BufNewFile,BufRead *.rb set ai filetype=rails.ruby
   au BufNewFile,BufRead *.mak set ai filetype=mako
+  au BufNewFile,BufRead *.rabl set ai filetype=rails.ruby
   au BufNewFile,BufRead Guardfile set ai filetype=ruby
 
 " Show Git diff in window split when commiting
