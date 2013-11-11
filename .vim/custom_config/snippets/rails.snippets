@@ -1,14 +1,14 @@
 snippet mspec "mspec"
 
-before(:all) { @${1:model} = FactoryGirl.build :$1 }
+before { @${1:model} = FactoryGirl.build :$1 }
 
 subject { @$1 }
 
 it { should be_valid }
 
-#methods
+# methods
 ${2}
 
-#validations
+# validations
 
 endsnippet
