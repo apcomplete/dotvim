@@ -41,4 +41,6 @@ filetype off
 
   Bundle 'git://github.com/tpope/vim-endwise.git'
 
+  Bundle "Handlebars"
+
 filetype plugin indent on

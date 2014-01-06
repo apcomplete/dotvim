@@ -1,0 +1,34 @@
+snippet mspec "mspec"
+
+before { @${1:model} = FactoryGirl.build :$1 }
+
+subject { @$1 }
+
+it { should be_valid }
+
+# methods
+${2}
+
+# validations
+
+# associations
+
+endsnippet
+
+snippet expect "expect"
+expect(${1:target}).to
+endsnippet
+
+snippet allow "allow"
+allow(${1:target}).to receive(${2})
+endsnippet
+
+snippet it "It"
+it "${1:does something}"${2: do
+  $3
+end}
+endsnippet
+
+snippet she "should_equal"
+expect(${1:target}).to eql(${2:value})
+endsnippet
