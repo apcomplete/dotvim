@@ -30,7 +30,7 @@ filetype off
     augroup END
 
   Bundle 'git://git.wincent.com/command-t.git'
-    set wildignore+=vendor/cache/*,vendor/ruby/*
+    set wildignore+=vendor/cache/*,vendor/ruby/*,tmp/*
 
   Bundle 'git://github.com/apcomplete/html_entities_helper.vim.git'
 
