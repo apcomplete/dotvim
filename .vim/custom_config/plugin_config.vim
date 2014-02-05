@@ -26,16 +26,19 @@ filetype off
       " Remove ALL autocommands of the current group.
       autocmd!
       " Add sparkup to new filetypes
-      autocmd FileType mako,php runtime! ftplugin/html/sparkup.vim
+      autocmd FileType mako,php,eco runtime! ftplugin/html/sparkup.vim
     augroup END
 
-  Bundle 'git://git.wincent.com/command-t.git'
-    set wildignore+=vendor/cache/*,vendor/ruby/*,tmp/*
+  Bundle 'kien/ctrlp.vim'
+    let g:ctrlp_map = ',t'
+    set wildignore+=*/vendor/*,*/tmp/*
 
   Bundle 'git://github.com/apcomplete/html_entities_helper.vim.git'
 
   Bundle 'git://github.com/kchmck/vim-coffee-script.git'
     au BufNewFile,BufRead *.coffee set filetype=coffee
+
+  Bundle 'AndrewRadev/vim-eco'
 
   Bundle 'git://github.com/majutsushi/tagbar'
 
