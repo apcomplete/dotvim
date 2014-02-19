@@ -31,7 +31,7 @@ filetype off
 
   Bundle 'kien/ctrlp.vim'
     let g:ctrlp_map = ',t'
-    set wildignore+=*/vendor/*,*/tmp/*
+    set wildignore+=*/vendor/*,*/tmp/*,*/node_modules/*,*/bower_components/*
 
   Bundle 'git://github.com/apcomplete/html_entities_helper.vim.git'
 
