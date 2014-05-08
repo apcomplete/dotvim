@@ -48,4 +48,6 @@ filetype off
 
   Bundle 'tpope/vim-rails'
 
+  Bundle 'rking/ag.vim'
+
 filetype plugin indent on
