@@ -44,7 +44,7 @@ filetype off
 " Syntastic for catching syntax errors on save
   Bundle "git://github.com/scrooloose/syntastic.git"
     let g:syntastic_enable_signs=1
-    let g:syntastic_quiet_warnings=1
+    let g:syntastic_quiet_messages = {'level': 'warnings'}
     let g:syntastic_disabled_filetypes = ['sass']
 
 " gundo for awesome undo tree visualization
