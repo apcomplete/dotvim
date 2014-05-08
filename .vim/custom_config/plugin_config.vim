@@ -46,4 +46,6 @@ filetype off
 
   Bundle 'mustache/vim-mustache-handlebars'
 
+  Bundle 'tpope/vim-rails'
+
 filetype plugin indent on
