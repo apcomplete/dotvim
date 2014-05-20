@@ -33,8 +33,6 @@ filetype off
     let g:ctrlp_map = ',t'
     set wildignore+=*/vendor/*,*/tmp/*,*/node_modules/*,*/bower_components/*
 
-  Bundle 'apcomplete/html_entities_helper.vim'
-
   Bundle 'kchmck/vim-coffee-script'
     au BufNewFile,BufRead *.coffee set filetype=coffee
 
