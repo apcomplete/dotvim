@@ -48,4 +48,6 @@ filetype off
 
   Bundle 'rking/ag.vim'
 
+  Bundle 'airblade/vim-gitgutter'
+
 filetype plugin indent on
