@@ -36,18 +36,25 @@ filetype off
   Bundle 'kchmck/vim-coffee-script'
     au BufNewFile,BufRead *.coffee set filetype=coffee
 
-  Bundle 'AndrewRadev/vim-eco'
-
   Bundle 'majutsushi/tagbar'
 
   Bundle 'tpope/vim-endwise'
 
-  Bundle 'mustache/vim-mustache-handlebars'
-
-  Bundle 'tpope/vim-rails'
-
   Bundle 'rking/ag.vim'
 
+  "Templating Languages
+  Bundle 'slim-template/vim-slim'
+  Bundle 'mustache/vim-mustache-handlebars'
+  Bundle 'AndrewRadev/vim-eco'
+
+  "Git
   Bundle 'airblade/vim-gitgutter'
+
+  "Rails
+  Bundle 'tpope/vim-rails'
+
+  "Clojure
+  Bundle 'guns/vim-clojure-static'
+  Bundle 'tpope/vim-fireplace'
 
 filetype plugin indent on
