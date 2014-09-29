@@ -1,5 +1,5 @@
 " OS wide cut/copy
-  set clipboard=unnamed
+  set clipboard=unnamed,unnamedplus
 
   au BufNewFile,BufRead *.xjs set ai filetype=javascript
   au BufNewFile,BufRead *.ejs set ai filetype=html
