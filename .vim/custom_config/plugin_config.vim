@@ -56,5 +56,6 @@ filetype off
   "Clojure
   Bundle 'guns/vim-clojure-static'
   Bundle 'tpope/vim-fireplace'
+  Bundle 'tpope/vim-leiningen'
 
 filetype plugin indent on
