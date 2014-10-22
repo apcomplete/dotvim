@@ -24,7 +24,8 @@
   au FileType html setlocal syntax=php
 
 "use relative line numbering
-  au BufEnter * set relativenumber
+  set relativenumber
+  set number
 
 "show line numbers in nerdtree
   let NERDTreeShowLineNumbers = 1
