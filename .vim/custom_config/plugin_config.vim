@@ -30,7 +30,6 @@ filetype off
     augroup END
 
   Bundle 'kien/ctrlp.vim'
-    let g:ctrlp_map = ',t'
     set wildignore+=*/vendor/*,*/tmp/*,*/node_modules/*,*/bower_components/*
 
   Bundle 'kchmck/vim-coffee-script'
