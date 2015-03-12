@@ -57,4 +57,10 @@ filetype off
   Bundle 'tpope/vim-fireplace'
   Bundle 'tpope/vim-leiningen'
 
+  "Node
+  Bundle 'digitaltoad/vim-jade'
+
+  "Javascript
+  Bundle 'pangloss/vim-javascript'
+
 filetype plugin indent on
