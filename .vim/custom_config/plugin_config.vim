@@ -16,6 +16,9 @@ filetype off
     "Ultisnips add custom snippets folder
     let g:UltiSnipsSnippetDirectories=["bundle/UltiSnips/UltiSnips","custom_config/snippets"]
 
+  "Ultisnips default snippets
+  Plugin 'honza/vim-snippets'
+
   Bundle 'vim-scripts/bufexplorer.zip'
   "7.2.8
 
