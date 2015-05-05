@@ -1,6 +1,3 @@
-"required for several plugins
-set nocompatible
-
 "enable syntax highlighting
 syntax on
 
@@ -123,3 +120,5 @@ set wildmode=list:longest
 
 "wrap lines
 set wrap
+
+colorscheme railscasts
