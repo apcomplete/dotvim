@@ -48,3 +48,5 @@ augroup sparkup_types
 augroup END
 
 set wildignore+=*/vendor/*,*/tmp/*,*/node_modules/*,*/bower_components/*
+
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
