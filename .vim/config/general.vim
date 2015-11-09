@@ -87,7 +87,7 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'
 let vimclojure#ParenRainbow  = 1
 
 "OS wide cut/copy
-set clipboard=unnamed,unnamedplus
+set clipboard=unnamed
 
 "Custom filetypes
 au BufRead,BufNewFile {Guardfile,Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
