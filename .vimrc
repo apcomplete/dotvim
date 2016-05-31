@@ -47,6 +47,9 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
 
+"Elixir
+Bundle 'elixir-lang/vim-elixir'
+
 call vundle#end()
 
 filetype plugin indent on
