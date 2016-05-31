@@ -50,6 +50,9 @@ Bundle 'pangloss/vim-javascript'
 "Elixir
 Bundle 'elixir-lang/vim-elixir'
 
+"Swift
+Bundle 'toyamarinyon/vim-swift'
+
 call vundle#end()
 
 filetype plugin indent on
