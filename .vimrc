@@ -53,6 +53,9 @@ Bundle 'elixir-lang/vim-elixir'
 "Swift
 Bundle 'toyamarinyon/vim-swift'
 
+"Golang
+Bundle 'fatih/vim-go'
+
 call vundle#end()
 
 filetype plugin indent on

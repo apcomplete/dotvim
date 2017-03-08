@@ -22,6 +22,15 @@ let g:surround_45 = "<% \r %>"
 "= to surround with output erb tag
 let g:surround_61 = "<%= \r %>"
 
+" use goimports for formatting
+let g:go_fmt_command = "goimports"
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
 function! CustomTabularPatterns()
   if exists('g:tabular_loaded')
     AddTabularPattern! symbols         / :/l0
@@ -36,9 +45,14 @@ endfunction
 autocmd VimEnter * call CustomTabularPatterns()
 
 let g:syntastic_enable_signs=1
-"let g:syntastic_quiet_messages = {'level': 'warnings'}
+let g:syntastic_check_on_open = 1
+let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_disabled_filetypes = ['sass']
 let g:syntastic_ruby_checkers = ['mri','rubocop']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': [] }
+let g:go_list_type = "quickfix"
 
 augroup sparkup_types
   "Remove ALL autocommands of the current group.
