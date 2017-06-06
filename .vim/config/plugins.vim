@@ -1,4 +1,4 @@
-"enable 256 colors
+" enable 256 colors
 set t_Co=256
 
 let NERDTreeHijackNetrw = 0
@@ -7,19 +7,22 @@ let NERDTreeShowLineNumbers = 1
 let NERDTreeIgnore = ['\.pyc$']
 nmap g :NERDTree \| NERDTreeToggle \| NERDTreeFind<CR>
 
-"Ultisnips advance using tab instead of <c-j>
+" add space after comment character
+let g:NERDSpaceDelims = 1
+
+" Ultisnips advance using tab instead of <c-j>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-"Ultisnips add custom snippets folder
+" Ultisnips add custom snippets folder
 let g:UltiSnipsSnippetDirectories=["bundle/UltiSnips/UltiSnips","config/snippets"]
 
-"# to surround with ruby string interpolation
+" # to surround with ruby string interpolation
 let g:surround_35 = "#{\r}"
-"- to surround with no-output erb tag
+" - to surround with no-output erb tag
 let g:surround_45 = "<% \r %>"
-"= to surround with output erb tag
+" = to surround with output erb tag
 let g:surround_61 = "<%= \r %>"
 
 " use goimports for formatting
