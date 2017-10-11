@@ -91,3 +91,5 @@ if executable('matcher')
       return split(system(cmd), "\n")
     endfunction
 end
+
+let g:bufExplorerFindActive=0        " Do not go to active window.

@@ -21,7 +21,6 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'sjl/vim-sparkup'
 Bundle 'vim-scripts/UltiSnips'
 Bundle 'vim-scripts/bufexplorer.zip'
-"Use version 7.2.8
 
 "Templating Languages
 Bundle 'AndrewRadev/vim-eco'
