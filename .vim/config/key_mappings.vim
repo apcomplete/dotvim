@@ -64,10 +64,3 @@ augroup go
   autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
   autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 augroup END
-
-augroup rails
-  " javascript alternates
-  autocmd User Rails/app/assets/javascripts/*/*.js let b:rails_alternate = substitute(substitute(rails#buffer().path(), 'app/assets', 'app/assets', ''), '\.js', '.test.js', '')
-  autocmd User Rails/app/javascripts/*/*.js let b:rails_alternate = substitute(substitute(rails#buffer().path(), 'app', 'app', ''), '\.js', 'test.js', '')
-  autocmd User Rails/app/javascripts/*/*.test.js let b:rails_alternate = substitute(substitute(rails#buffer().path(), 'app/javascripts', 'app/javascripts', ''), '.test.js', '.js', '')
-augroup END
