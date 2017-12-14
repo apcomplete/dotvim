@@ -45,6 +45,7 @@ Bundle 'digitaltoad/vim-jade'
 "Javascript
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
+Bundle 'mxw/vim-jsx'
 
 "Elixir
 Bundle 'elixir-lang/vim-elixir'
