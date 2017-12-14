@@ -84,3 +84,8 @@ end
 
 " Only run linters when saving file
 let g:ale_lint_on_text_changed = 'never'
+
+let g:rails_projections = {
+      \ "app/javascript/*.test.js": { "alternate": "app/javascript/{}.js" },
+      \ "app/javascript/*.js": { "alternate": "app/javascript/{}.test.js" }
+      \ }
