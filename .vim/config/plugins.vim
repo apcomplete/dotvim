@@ -47,16 +47,6 @@ function! CustomTabularPatterns()
 endfunction
 autocmd VimEnter * call CustomTabularPatterns()
 
-let g:syntastic_enable_signs=1
-let g:syntastic_check_on_open = 1
-let g:syntastic_quiet_messages = {'level': 'warnings'}
-let g:syntastic_disabled_filetypes = ['sass']
-let g:syntastic_ruby_checkers = ['mri','rubocop']
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': [] }
-let g:go_list_type = "quickfix"
-
 augroup sparkup_types
   "Remove ALL autocommands of the current group.
   autocmd!
@@ -92,4 +82,5 @@ if executable('matcher')
     endfunction
 end
 
-let g:bufExplorerFindActive=0        " Do not go to active window.
+" Only run linters when saving file
+let g:ale_lint_on_text_changed = 'never'

@@ -8,19 +8,19 @@ set rtp+=~/.vim/vundle.git/
 call vundle#begin()
 
 Bundle 'godlygeek/tabular'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
 Bundle 'honza/vim-snippets'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'rking/ag.vim'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/vim-sparkup'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
 Bundle 'vim-scripts/UltiSnips'
 Bundle 'vim-scripts/bufexplorer.zip'
+Bundle 'w0rp/ale'
 
 "Templating Languages
 Bundle 'AndrewRadev/vim-eco'
