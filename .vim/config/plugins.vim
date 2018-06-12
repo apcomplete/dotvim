@@ -61,6 +61,11 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " Use ag in CtrlP for list
 " Only run linters when saving file
 let g:ale_lint_on_text_changed = 'never'
 
+let g:ale_javascript_eslint_suppress_missing_config = 1
+
+let g:ale_linters = {
+\ 'javascript': ['eslint']
+\}
 
 " Skip linting on jsx files for PFF
 let g:ale_pattern_options = {
