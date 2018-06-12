@@ -112,8 +112,7 @@ au BufLeave * setlocal colorcolumn=0
 au FileType php setlocal ts=4 sts=4 sw=4 expandtab
 au FileType go setlocal ts=4 sts=0 sw=4 noexpandtab nolist
 
-"use relative line numbering, but show absolute line number on current line
-set relativenumber
+"use absolute line number
 set number
 
 "autocompletion list
