@@ -61,13 +61,25 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " Use ag in CtrlP for list
 " Only run linters when saving file
 let g:ale_lint_on_text_changed = 'never'
 
+
+" Skip linting on jsx files for PFF
+let g:ale_pattern_options = {
+\ '\.ex$': {'ale_linters': [], 'ale_fixers': []},
+\ '\.exs$': {'ale_linters': [], 'ale_fixers': []},
+\}
+
 " Do not go to active window.
 let g:bufExplorerFindActive=0
 
 " Highlight jsx in js files
 let g:jsx_ext_required = 0
 
-let g:rails_projections = {
-      \ "app/javascript/*.test.js": { "alternate": "app/javascript/{}.js" },
-      \ "app/javascript/*.js": { "alternate": "app/javascript/{}.test.js" }
-      \ }
+" Configure projections
+let g:projectionist_heuristics = {
+    \ "*": {
+    \   "*.ex": { "alternate": "test/{}_test.exs" },
+    \   "test/*_test.exs": { "alternate": "{}.ex" },
+    \   "pff/*.js": { "alternate": "pff/{}.test.js" },
+    \   "pff/*.test.js": { "alternate": "pff/{}.js" },
+    \ },
+    \ }
