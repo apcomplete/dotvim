@@ -110,4 +110,6 @@ set wildmode=list:longest
 "wrap lines
 set wrap
 
+autocmd VimEnter * unmap <silent><expr> co
+
 colorscheme railscasts
