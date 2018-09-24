@@ -34,6 +34,6 @@
 
 " pretty but not terminal-compatible color scheme
   set background=dark
-  colors twilight2
+  colors railscasts2
 
 runtime! custom_config/*.gvim
