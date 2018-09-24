@@ -4,9 +4,6 @@ set novisualbell
 "enable syntax highlighting
 syntax on
 
-"show commands as we type them
-set showcmd
-
 "highlight matching brackets
 set showmatch
 
@@ -44,9 +41,6 @@ set autoindent
 "don't blink the cursor
 set guicursor=a:blinkon0
 
-"show current line info (current/total)
-set ruler rulerformat=%=%l/%L
-
 "show status line
 set laststatus=2
 
@@ -74,17 +68,11 @@ set backspace=indent,eol,start
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set list
 
-"have the mouse enabled all the time
-set mouse=a
-
 "allow lots of tabs
 set tabpagemax=20
 
 "remember last position in file
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\""| endif
-
-"different color for each paren pairs
-let vimclojure#ParenRainbow  = 1
 
 "OS wide cut/copy
 set clipboard=unnamed

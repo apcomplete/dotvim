@@ -48,19 +48,5 @@ imap <MiddleMouse> <Nop>
 "NERDTree mapping
 map <leader>w :NERDTreeToggle<CR>
 
-"Open the taglist
-nnoremap <silent> ,T :TagbarToggle<CR>
-
 "Save using sudo access
 cmap w!! %!sudo tee > /dev/null %
-
-"shortcut to align text with Tabular
-map <Leader>a :Tabularize<space>
-
-" go file shortcuts
-augroup go
-  autocmd!
-  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-augroup END

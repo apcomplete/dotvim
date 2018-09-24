@@ -25,28 +25,6 @@ let g:surround_45 = "<% \r %>"
 " = to surround with output erb tag
 let g:surround_61 = "<%= \r %>"
 
-" use goimports for formatting
-let g:go_fmt_command = "goimports"
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-
-function! CustomTabularPatterns()
-  if exists('g:tabular_loaded')
-    AddTabularPattern! symbols         / :/l0
-    AddTabularPattern! hash            /^[^>]*\zs=>/
-    AddTabularPattern! chunks          / \S\+/l0
-    AddTabularPattern! assignment      / = /l0
-    AddTabularPattern! comma           /^[^,]*,/l1
-    AddTabularPattern! colon           /:\zs /l0
-    AddTabularPattern! options_hashes  /:\w\+ =>/
-  endif
-endfunction
-autocmd VimEnter * call CustomTabularPatterns()
-
 augroup sparkup_types
   "Remove ALL autocommands of the current group.
   autocmd!
