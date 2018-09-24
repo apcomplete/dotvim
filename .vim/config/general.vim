@@ -102,6 +102,7 @@ au FileType go setlocal ts=4 sts=0 sw=4 noexpandtab nolist
 
 "use absolute line number
 set number
+set relativenumber
 
 "autocompletion list
 set wildmode=list:longest
