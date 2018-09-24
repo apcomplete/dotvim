@@ -28,18 +28,11 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-rails'
 
-"Clojure
-Bundle 'guns/vim-clojure-static'
-Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-leiningen'
-
-"Javascript
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'pangloss/vim-javascript'
-Bundle 'mxw/vim-jsx'
-
 "Elixir
-Bundle 'elixir-lang/vim-elixir'
+Bundle 'avdgaag/vim-phoenix'
+
+"Syntax Highlighting
+Bundle 'sheerun/vim-polyglot'
 
 call vundle#end()
 
