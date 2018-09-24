@@ -27,7 +27,7 @@
   endif
 
 " use a big, pretty font
-  set guifont=Monaco:h15
+  set guifont=Inconsolata:h14
 
 " initial window size
   set lines=45 columns=120
