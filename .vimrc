@@ -30,8 +30,11 @@ Bundle 'tpope/vim-rails'
 
 "Elixir
 Bundle 'avdgaag/vim-phoenix'
+Bundle 'mhinz/vim-mix-format'
 
 "Syntax Highlighting
+Bundle 'maxmellon/vim-jsx-pretty'
+Bundle 'neoclide/vim-jsx-improve'
 Bundle 'sheerun/vim-polyglot'
 
 call vundle#end()
