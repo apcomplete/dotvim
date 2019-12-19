@@ -9,7 +9,7 @@ call vundle#begin()
 
 Bundle 'honza/vim-snippets'
 Bundle 'kien/ctrlp.vim'
-Bundle 'rking/ag.vim'
+Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/vim-sparkup'
