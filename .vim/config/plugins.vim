@@ -32,7 +32,7 @@ augroup sparkup_types
   autocmd FileType mako,php,eco runtime! ftplugin/html/sparkup.vim
 augroup END
 
-set wildignore+=*/vendor/*,*/tmp/*,*/node_modules/*,*/bower_components/*
+set wildignore+=*/vendor/*,*/tmp/*,*/node_modules/*,*/bower_components/*,*/coverage*
 
 " Only run linters when saving file
 let g:ale_lint_on_text_changed = 'never'
