@@ -116,3 +116,8 @@ set re=1
 autocmd VimEnter * unmap <silent><expr> co
 
 colorscheme railscasts
+
+hi link jsxTagName xmlTagName
+hi link jsxEndComponentName xmlTagName
+hi link jsxComponentName xmlTagName
+hi link jsxTag xmlTagName
