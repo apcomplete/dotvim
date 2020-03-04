@@ -48,5 +48,8 @@ imap <MiddleMouse> <Nop>
 "NERDTree mapping
 map <leader>w :NERDTreeToggle<CR>
 
+"Mix Formatting
+map <leader>f :MixFormat<CR>
+
 "Save using sudo access
 cmap w!! %!sudo tee > /dev/null %
