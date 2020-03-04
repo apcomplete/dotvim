@@ -53,3 +53,11 @@ map <leader>f :MixFormat<CR>
 
 "Save using sudo access
 cmap w!! %!sudo tee > /dev/null %
+
+nmap <leader>sp :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
