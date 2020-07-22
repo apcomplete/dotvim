@@ -26,14 +26,6 @@ task :default do
       else                      prompt_to_link_files(f)
     end
   end
-  Rake::Task['vundle'].execute
-end
-
-desc "Install vundle for vim plugins"
-task :vundle do
-  target = "#{platform_files['.vim']}/vundle.git"
-  Installer.git_clone('http://github.com/gmarik/vundle.git', target)
-  puts "\nIf this is a new installation, open vim and type ':BundleInstall' to install necessary plugins."
 end
 
 def platform_files

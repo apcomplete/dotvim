@@ -1,43 +1,39 @@
 set nocompatible
 filetype off
 
-" bring in the bundles for mac and windows
-set rtp+=~/vimfiles/vundle.git/
-set rtp+=~/.vim/vundle.git/
+call plug#begin('~/.vim/plugged')
 
-call vundle#begin()
-
-Bundle 'honza/vim-snippets'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'sjl/vim-sparkup'
-Bundle 'tpope/vim-projectionist'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'vim-scripts/UltiSnips'
-Bundle 'vim-scripts/bufexplorer.zip'
-Bundle 'w0rp/ale'
+Plug 'honza/vim-snippets'
+Plug 'kien/ctrlp.vim'
+Plug 'mileszs/ack.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'sjl/vim-sparkup'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-scripts/UltiSnips'
+Plug 'vim-scripts/bufexplorer.zip'
+Plug 'w0rp/ale'
 
 "Git
-Bundle 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
 "Rails
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-rails'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-rails'
 
 "Elixir
-Bundle 'avdgaag/vim-phoenix'
-Bundle 'mhinz/vim-mix-format'
+Plug 'avdgaag/vim-phoenix'
+Plug 'mhinz/vim-mix-format'
 
 "Syntax Highlighting
-Bundle 'maxmellon/vim-jsx-pretty'
-Bundle 'neoclide/vim-jsx-improve'
-Bundle 'sheerun/vim-polyglot'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'neoclide/vim-jsx-improve'
+Plug 'sheerun/vim-polyglot'
 
-call vundle#end()
+call plug#end()
 
 filetype plugin indent on
 
