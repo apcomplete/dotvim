@@ -18,5 +18,5 @@ Windows users: be sure to use **RailsInstaller** > **Command Prompt with Ruby an
 2. `cd dotvim`
 3. `rake` (This will symlink the necessary files to your home directory, asking for permission before clobbering anything.)
 4. `vim` (or in Windows: `gvim`)
-5. `:BundleClean` (if you have previously used this Edgecase Vim config)
-6. `:BundleInstall` (This will clone and install all of the plugins from github.)
+5. `:PlugClean`
+6. `:PlugInstall`
