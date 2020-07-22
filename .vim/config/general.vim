@@ -80,7 +80,7 @@ set clipboard=unnamedplus
 "Custom filetypes
 au BufRead,BufNewFile {Guardfile,Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
 au BufNewFile,BufRead *.json set ai filetype=javascript
-au BufNewFile,BufRead *.xjs set ai filetype=javascript
+au BufNewFile,BufRead *.jsx set ai filetype=javascript
 au BufNewFile,BufRead *.ejs set ai filetype=html
 au BufNewFile,BufRead *.mak set ai filetype=mako
 au BufNewFile,BufRead *.rabl set ai filetype=ruby
