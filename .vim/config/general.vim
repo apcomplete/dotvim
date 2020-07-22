@@ -75,7 +75,7 @@ set tabpagemax=20
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\""| endif
 
 "OS wide cut/copy
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 "Custom filetypes
 au BufRead,BufNewFile {Guardfile,Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
