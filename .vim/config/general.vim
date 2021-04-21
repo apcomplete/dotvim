@@ -88,6 +88,7 @@ au BufNewFile,BufRead *.mak set ai filetype=mako
 au BufNewFile,BufRead *.rabl set ai filetype=ruby
 au BufNewFile,BufRead *.coffee set filetype=coffee
 au BufNewFile,BufRead *.cap set ai filetype=ruby
+au BufNewFile,BufRead *.eex set ai filetype=eelixir
 
 "Show Git diff in window split when commiting
 au FileType gitcommit DiffGitCached | wincmd L | wincmd p
