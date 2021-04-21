@@ -114,7 +114,7 @@ set wildmode=list:longest
 set wrap
 
 "use new regex for highlighting issues
-set re=1
+set re=0
 
 autocmd VimEnter * unmap <silent><expr> co
 
