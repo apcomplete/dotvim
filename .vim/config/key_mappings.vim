@@ -54,6 +54,7 @@ map <leader>f :MixFormat<CR>
 "Save using sudo access
 cmap w!! %!sudo tee > /dev/null %
 
+" See highlight group under cursor
 nmap <leader>sp :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
