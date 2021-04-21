@@ -1,3 +1,6 @@
+"enable mouse
+set mouse=a
+
 "don't flash my screen
 set novisualbell
 
