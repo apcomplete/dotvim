@@ -1,6 +1,9 @@
 set nocompatible
 filetype off
 
+" Disable vim-jsx
+let g:polyglot_disabled = []
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'honza/vim-snippets'

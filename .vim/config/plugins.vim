@@ -67,9 +67,13 @@ set wildignore+=*/vendor/*,*/tmp/*,*/node_modules/*,*/bower_components/*,*/deps/
 " Only run linters when saving file
 let g:ale_lint_on_text_changed = 'never'
 
+let g:ale_fixers = { 'elixir': ['mix_format'] }
+
 let g:ale_linters = {
 \ 'elixir': ['credo'],
-\ 'javascript': ['eslint']
+\ 'javascript': ['eslint'],
+\ 'typescript': ['eslint'],
+\ 'typescriptreact': ['eslint']
 \}
 
 " Do not go to active window.
@@ -166,6 +170,9 @@ let g:projectionist_heuristics = {
     \       "end"
     \     ]
     \   },
+    \   "pff/*.ts": { "type": "test", "alternate": "pff/{}.test.ts" },
+    \   "pff/*.tsx": { "type": "test", "alternate": ["pff/{}.test.tsx", "pff/{}.test.ts"] },
+    \   "pff/*.test.ts": { "type": "src", "alternate": ["pff/{}.ts", "pff/{}.tsx"] },
     \   "pff/*.js": { "type": "test", "alternate": "pff/{}.test.js" },
     \   "pff/*.jsx": { "type": "test", "alternate": "pff/{}.test.js" },
     \   "pff/*.test.js": { "type": "src", "alternate": ["pff/{}.js", "pff/{}.jsx"] },
@@ -174,6 +181,3 @@ let g:projectionist_heuristics = {
 
 " Don't navigate to first result
 cnoreabbrev Ack Ack!
-
-" Disable vim-jsx
-let g:polyglot_disabled = ['jsx']
