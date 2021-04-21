@@ -18,13 +18,12 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-scripts/UltiSnips'
 Plug 'vim-scripts/bufexplorer.zip'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 "Git
 Plug 'airblade/vim-gitgutter'
 
 "Rails
-Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
 
 "Elixir
