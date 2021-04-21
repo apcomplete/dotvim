@@ -24,6 +24,13 @@ let g:surround_45 = "<% \r %>"
 " = to surround with output erb tag
 let g:surround_61 = "<%= \r %>"
 
+" some stupid config around gitgutter to keep line numbers showing up
+highlight clear SignColumn
+highlight GitGutterAdd ctermfg=2
+highlight GitGutterChange ctermfg=3
+highlight GitGutterDelete ctermfg=1
+highlight GitGutterChangeDelete ctermfg=4
+
 augroup sparkup_types
   "Remove ALL autocommands of the current group.
   autocmd!
