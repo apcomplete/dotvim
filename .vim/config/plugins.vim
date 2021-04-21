@@ -5,7 +5,6 @@ let NERDTreeHijackNetrw = 0
 "show line numbers in nerdtree
 let NERDTreeShowLineNumbers = 1
 let NERDTreeIgnore = ['\.pyc$']
-nmap g :NERDTree \| NERDTreeToggle \| NERDTreeFind<CR>
 
 " add space after comment character
 let g:NERDSpaceDelims = 1
@@ -31,6 +30,30 @@ augroup sparkup_types
   "Add sparkup to new filetypes
   autocmd FileType mako,php,eco runtime! ftplugin/html/sparkup.vim
 augroup END
+
+" COC config
+"
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 set wildignore+=*/vendor/*,*/tmp/*,*/node_modules/*,*/bower_components/*,*/deps/*,*/priv/static/*,*/coverage*
 

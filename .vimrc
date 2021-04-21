@@ -27,6 +27,8 @@ Plug 'tpope/vim-rails'
 "Elixir
 Plug 'avdgaag/vim-phoenix'
 Plug 'mhinz/vim-mix-format'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'amiralies/coc-elixir', {'do': 'yarn install && yarn prepack'}
 
 "Syntax Highlighting
 Plug 'maxmellon/vim-jsx-pretty'
