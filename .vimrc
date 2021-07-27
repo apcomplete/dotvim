@@ -32,6 +32,9 @@ Plug 'mhinz/vim-mix-format'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'amiralies/coc-elixir', {'do': 'yarn install && yarn prepack'}
 
+" Javascript
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
 "Syntax Highlighting
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'neoclide/vim-jsx-improve'
