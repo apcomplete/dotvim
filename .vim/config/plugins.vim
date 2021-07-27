@@ -72,8 +72,8 @@ let g:ale_fixers = { 'elixir': ['mix_format'] }
 let g:ale_linters = {
 \ 'elixir': ['credo'],
 \ 'javascript': ['eslint'],
-\ 'typescript': ['eslint'],
-\ 'typescriptreact': ['eslint']
+\ 'typescript': ['eslint', 'tslint', 'tsserver', 'typecheck'],
+\ 'typescriptreact': ['eslint', 'tslint', 'tsserver', 'typecheck']
 \}
 
 " Do not go to active window.
@@ -170,12 +170,12 @@ let g:projectionist_heuristics = {
     \       "end"
     \     ]
     \   },
-    \   "pff/*.ts": { "type": "test", "alternate": "pff/{}.test.ts" },
-    \   "pff/*.tsx": { "type": "test", "alternate": ["pff/{}.test.tsx", "pff/{}.test.ts"] },
+    \   "pff/*.ts": { "type": "test", "alternate": ["pff/{}.test.ts", "pff/{}.test.js"] },
+    \   "pff/*.tsx": { "type": "test", "alternate": ["pff/{}.test.tsx", "pff/{}.test.ts", "pff/{}.test.js"] },
     \   "pff/*.test.ts": { "type": "src", "alternate": ["pff/{}.ts", "pff/{}.tsx"] },
     \   "pff/*.js": { "type": "test", "alternate": "pff/{}.test.js" },
     \   "pff/*.jsx": { "type": "test", "alternate": "pff/{}.test.js" },
-    \   "pff/*.test.js": { "type": "src", "alternate": ["pff/{}.js", "pff/{}.jsx"] },
+    \   "pff/*.test.js": { "type": "src", "alternate": ["pff/{}.js", "pff/{}.jsx", "pff/{}.ts", "pff/{}.tsx"] },
     \ },
     \ }
 
