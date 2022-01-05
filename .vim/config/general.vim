@@ -116,8 +116,6 @@ set wrap
 "use new regex for highlighting issues
 set re=0
 
-autocmd VimEnter * unmap <silent><expr> co
-
 colorscheme railscasts
 
 hi link jsxTagName xmlTagName
