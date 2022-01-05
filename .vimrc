@@ -2,7 +2,7 @@ set nocompatible
 filetype off
 
 " Disable vim-jsx
-let g:polyglot_disabled = []
+let g:polyglot_disabled = ['typescriptreact']
 
 call plug#begin('~/.vim/plugged')
 
