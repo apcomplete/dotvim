@@ -171,8 +171,9 @@ let g:projectionist_heuristics = {
     \     ]
     \   },
     \   "pff/*.ts": { "type": "test", "alternate": ["pff/{}.test.ts", "pff/{}.test.js"] },
-    \   "pff/*.tsx": { "type": "test", "alternate": ["pff/{}.test.tsx", "pff/{}.test.ts", "pff/{}.test.js"] },
+    \   "pff/*.tsx": { "type": "test", "alternate": ["pff/{}.test.tsx", "pff/{}.test.ts", "pff/{}.test.tsx", "pff/{}.test.js"] },
     \   "pff/*.test.ts": { "type": "src", "alternate": ["pff/{}.ts", "pff/{}.tsx"] },
+    \   "pff/*.test.tsx": { "type": "src", "alternate": ["pff/{}.ts", "pff/{}.tsx"] },
     \   "pff/*.js": { "type": "test", "alternate": "pff/{}.test.js" },
     \   "pff/*.jsx": { "type": "test", "alternate": "pff/{}.test.js" },
     \   "pff/*.test.js": { "type": "src", "alternate": ["pff/{}.js", "pff/{}.jsx", "pff/{}.ts", "pff/{}.tsx"] },
