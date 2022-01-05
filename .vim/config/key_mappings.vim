@@ -99,5 +99,6 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-
 nmap g :NERDTree \| NERDTreeToggle \| NERDTreeFind<CR>
+
+nnoremap <silent> K :call CocAction('doHover')<CR>
