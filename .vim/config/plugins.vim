@@ -62,7 +62,7 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-set wildignore+=*/vendor/*,*/tmp/*,*/node_modules/*,*/bower_components/*,*/deps/*,*/priv/static/*,*/coverage*
+set wildignore+=*/vendor/*,*/tmp/*,*/node_modules/*,*/bower_components/*,*/deps/*,*/priv/static/*
 
 " Only run linters when saving file
 let g:ale_lint_on_text_changed = 'never'
