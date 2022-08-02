@@ -16,7 +16,6 @@ Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-scripts/UltiSnips'
 Plug 'vim-scripts/bufexplorer.zip'
 Plug 'dense-analysis/ale'
 
