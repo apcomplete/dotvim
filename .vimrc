@@ -30,10 +30,7 @@ Plug 'tpope/vim-rails'
 Plug 'avdgaag/vim-phoenix'
 Plug 'mhinz/vim-mix-format'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'amiralies/coc-elixir', {'do': 'yarn install && yarn prepack'}
-
-" Javascript
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 
 "Syntax Highlighting
 Plug 'maxmellon/vim-jsx-pretty'
