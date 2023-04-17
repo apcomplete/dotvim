@@ -23,7 +23,7 @@ return require('packer').startup(function(use)
 
   use {
     'vim-scripts/bufexplorer.zip',
-    config = function ()
+    config = function()
       vim.g.bufExplorerFindActive = 0
     end
   }
@@ -43,11 +43,11 @@ return require('packer').startup(function(use)
       vim.g.ale_lint_on_text_changed = 'never'
       vim.g.ale_fixers = { elixir = { 'mix_format' } }
       vim.g.ale_linters = {
-        elixir = {'credo'},
-        javascript = {'eslint'},
-        jsx = {'eslint'},
-        typescript = {'eslint', 'tslint', 'typecheck'},
-        typescriptreact = {'eslint', 'tslint', 'typecheck'},
+        elixir = { 'credo' },
+        javascript = { 'eslint' },
+        jsx = { 'eslint' },
+        typescript = { 'eslint', 'tslint', 'typecheck' },
+        typescriptreact = { 'eslint', 'tslint', 'typecheck' },
       }
     end
   }
@@ -188,7 +188,7 @@ return require('packer').startup(function(use)
 
   -- Mappings.
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap = true, silent = true }
   vim.keymap.set('n', '<LEADER>e', vim.diagnostic.open_float, opts)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -202,7 +202,7 @@ return require('packer').startup(function(use)
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap=true, buffer=bufnr }
+    local bufopts = { noremap = true, buffer = bufnr }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
     vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, bufopts)
@@ -216,7 +216,7 @@ return require('packer').startup(function(use)
     vim.keymap.set('n', '<LEADER>rn', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', '<LEADER>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<LEADER>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+    vim.keymap.set('n', '<LEADER>p', function() vim.lsp.buf.format { async = true } end, bufopts)
   end
 
   local lsp_flags = {
@@ -226,18 +226,19 @@ return require('packer').startup(function(use)
   -- hook up cmp_nvim_lsp for completion
   local lspconfig = require('lspconfig')
   local lsp_defaults = lspconfig.util.default_config
-  lsp_defaults.capabilities = vim.tbl_deep_extend('force', lsp_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
+  lsp_defaults.capabilities = vim.tbl_deep_extend('force', lsp_defaults.capabilities,
+    require('cmp_nvim_lsp').default_capabilities())
 
-  require('lspconfig')['bashls'].setup({flags = lsp_flags, on_attach = on_attach})
-  require('lspconfig')['cssls'].setup({flags = lsp_flags, on_attach = on_attach})
-  require('lspconfig')['dockerls'].setup({flags = lsp_flags, on_attach = on_attach})
-  require('lspconfig')['elixirls'].setup({flags = lsp_flags, on_attach = on_attach})
-  require('lspconfig')['html'].setup({flags = lsp_flags, on_attach = on_attach})
-  require('lspconfig')['jsonls'].setup({flags = lsp_flags, on_attach = on_attach})
-  require('lspconfig')['marksman'].setup({flags = lsp_flags, on_attach = on_attach}) -- markdown
-  require('lspconfig')['pyright'].setup({flags = lsp_flags, on_attach = on_attach})
-  require('lspconfig')['ruby_ls'].setup({flags = lsp_flags, on_attach = on_attach})
-  require('lspconfig')['sqlls'].setup({flags = lsp_flags, on_attach = on_attach})
+  require('lspconfig')['bashls'].setup({ flags = lsp_flags, on_attach = on_attach })
+  require('lspconfig')['cssls'].setup({ flags = lsp_flags, on_attach = on_attach })
+  require('lspconfig')['dockerls'].setup({ flags = lsp_flags, on_attach = on_attach })
+  require('lspconfig')['elixirls'].setup({ flags = lsp_flags, on_attach = on_attach })
+  require('lspconfig')['html'].setup({ flags = lsp_flags, on_attach = on_attach })
+  require('lspconfig')['jsonls'].setup({ flags = lsp_flags, on_attach = on_attach })
+  require('lspconfig')['marksman'].setup({ flags = lsp_flags, on_attach = on_attach }) -- markdown
+  require('lspconfig')['pyright'].setup({ flags = lsp_flags, on_attach = on_attach })
+  require('lspconfig')['ruby_ls'].setup({ flags = lsp_flags, on_attach = on_attach })
+  require('lspconfig')['sqlls'].setup({ flags = lsp_flags, on_attach = on_attach })
   require('lspconfig')['lua_ls'].setup({
     flags = lsp_flags,
     on_attach = on_attach,
@@ -245,119 +246,112 @@ return require('packer').startup(function(use)
       Lua = {
         diagnostics = {
           -- Get the language server to recognize the `vim` global
-          globals = {'vim'},
+          globals = { 'vim' },
         },
       },
     },
   })
-  require('lspconfig')['tsserver'].setup({flags = lsp_flags, on_attach = on_attach})
+  require('lspconfig')['tsserver'].setup({ flags = lsp_flags, on_attach = on_attach })
 
   -- Just needed if I have problems
   -- vim.lsp.set_log_level("debug")
 
   -- -- ========== Completeion ============
   -- Snippets, need to understand more about how to use this
-  use{'L3MON4D3/LuaSnip',
+  use { 'L3MON4D3/LuaSnip',
     tag = 'v1.*',
     config = function()
-      require('luasnip.loaders.from_vscode').lazy_load({paths = './snippets'})
+      require('luasnip.loaders.from_vscode').lazy_load({ paths = './snippets' })
     end
   }
   use('rafamadriz/friendly-snippets') -- language specific snippets
 
-  use('saadparwaiz1/cmp_luasnip') -- completion from snippets
-  use('hrsh7th/cmp-nvim-lsp') -- completion from LSP
-  use('hrsh7th/cmp-buffer')   -- completion from this buffer
-  use('hrsh7th/cmp-path')     -- completion from file paths
+  use('saadparwaiz1/cmp_luasnip')     -- completion from snippets
+  use('hrsh7th/cmp-nvim-lsp')         -- completion from LSP
+  use('hrsh7th/cmp-buffer')           -- completion from this buffer
+  use('hrsh7th/cmp-path')             -- completion from file paths
 
   -- The basis for configuring completion
-  vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
-  use{'hrsh7th/nvim-cmp',
+  vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+  use { 'hrsh7th/nvim-cmp',
     config = function()
       local cmp = require('cmp')
       local luasnip = require('luasnip')
 
-      local select_opts = {behavior = cmp.SelectBehavior.Select}
+      local select_opts = { behavior = cmp.SelectBehavior.Select }
 
       cmp.setup({
-          snippet = {
-            expand = function(args)
-              luasnip.lsp_expand(args.body)
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end
+        },
+        sources = {
+          { name = 'path' },
+          { name = 'nvim_lsp', keyword_length = 3 },
+          { name = 'buffer',   keyword_length = 3 },
+          { name = 'luasnip',  keyword_length = 2 },
+        },
+        window = {
+          documentation = cmp.config.window.bordered()
+        },
+        formatting = {
+          fields = { 'menu', 'abbr', 'kind' },
+          format = function(entry, item)
+            local menu_icon = {
+              nvim_lsp = 'λ',
+              luasnip = '⋗',
+              buffer = 'Ω',
+              path = '🖫',
+            }
+
+            item.menu = menu_icon[entry.source.name]
+            return item
+          end,
+        },
+        mapping = {
+          ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
+          ['<Down>'] = cmp.mapping.select_next_item(select_opts),
+          ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
+          ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
+          ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-e>'] = cmp.mapping.abort(),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<C-d>'] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(1) then
+              luasnip.jump(1)
+            else
+              fallback()
             end
-          },
-          sources = {
-            {name = 'path'},
-            {name = 'nvim_lsp', keyword_length = 3},
-            {name = 'buffer', keyword_length = 3},
-            {name = 'luasnip', keyword_length = 2},
-          },
-          window = {
-            documentation = cmp.config.window.bordered()
-          },
-          formatting = {
-            fields = {'menu', 'abbr', 'kind'},
-            format = function(entry, item)
-              local menu_icon = {
-                nvim_lsp = 'λ',
-                luasnip = '⋗',
-                buffer = 'Ω',
-                path = '🖫',
-              }
+          end, { 'i', 's' }),
+          ['<C-b>'] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
+          ['<Tab>'] = cmp.mapping(function(fallback)
+            local col = vim.fn.col('.') - 1
 
-              item.menu = menu_icon[entry.source.name]
-              return item
-            end,
-          },
-          mapping = {
-            ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
-            ['<Down>'] = cmp.mapping.select_next_item(select_opts),
-
-            ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
-            ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
-
-            ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-            ['<C-f>'] = cmp.mapping.scroll_docs(4),
-
-            ['<C-e>'] = cmp.mapping.abort(),
-            ['<CR>'] = cmp.mapping.confirm({select = true}),
-
-            ['<C-d>'] = cmp.mapping(function(fallback)
-                if luasnip.jumpable(1) then
-                  luasnip.jump(1)
-                else
-                  fallback()
-                end
-              end, {'i', 's'}),
-
-            ['<C-b>'] = cmp.mapping(function(fallback)
-                if luasnip.jumpable(-1) then
-                  luasnip.jump(-1)
-                else
-                  fallback()
-                end
-              end, {'i', 's'}),
-
-            ['<Tab>'] = cmp.mapping(function(fallback)
-                local col = vim.fn.col('.') - 1
-
-                if cmp.visible() then
-                  cmp.select_next_item(select_opts)
-                elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-                  fallback()
-                else
-                  cmp.complete()
-                end
-              end, {'i', 's'}),
-
-            ['<S-Tab>'] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                  cmp.select_prev_item(select_opts)
-                else
-                  fallback()
-                end
-              end, {'i', 's'}),
-          },
-        })
+            if cmp.visible() then
+              cmp.select_next_item(select_opts)
+            elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+              fallback()
+            else
+              cmp.complete()
+            end
+          end, { 'i', 's' }),
+          ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item(select_opts)
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
+        },
+      })
     end
   }
 
@@ -365,8 +359,8 @@ return require('packer').startup(function(use)
   -- use 'tpope/vim-rails'
 
   -- Elixir
-  use{'mhinz/vim-mix-format', ft = {'elixir'}}
-  use{'avdgaag/vim-phoenix', ft = {'elixir'}}
+  use { 'mhinz/vim-mix-format', ft = { 'elixir' } }
+  use { 'avdgaag/vim-phoenix', ft = { 'elixir' } }
 
   -- Git
   use 'airblade/vim-gitgutter'
@@ -410,11 +404,9 @@ return require('packer').startup(function(use)
         },
         -- Automatically install missing parsers when entering buffer
         auto_install = true,
-
         highlight = {
           enabled = true
         },
-
         indent = {
           enable = true
         }
@@ -428,28 +420,28 @@ return require('packer').startup(function(use)
   use { 'nvim-lualine/lualine.nvim',
     config = function()
       require('lualine').setup({
-          options = {
-            icons_enabled = true,
-            theme = 'auto',
-          },
-          sections = {
-            lualine_c = {
-              {
-                'filename',
-                file_status = true, -- displays file status (readonly status, modified status)
-                path = 1            -- 1 - Relative path, 2 -- absolute path
-              },
+        options = {
+          icons_enabled = true,
+          theme = 'auto',
+        },
+        sections = {
+          lualine_c = {
+            {
+              'filename',
+              file_status = true, -- displays file status (readonly status, modified status)
+              path = 1            -- 1 - Relative path, 2 -- absolute path
             },
           },
-          inactive_sections = {
-            lualine_c = {
-              {
-                'filename',
-                path = 1            -- 1 - Relative path, 2 -- absolute path
-              }
-            },
+        },
+        inactive_sections = {
+          lualine_c = {
+            {
+              'filename',
+              path = 1 -- 1 - Relative path, 2 -- absolute path
+            }
           },
-        })
+        },
+      })
     end
   }
 end)
