@@ -2,7 +2,7 @@ vim.g.mapleader = ','
 vim.opt.guifont = 'Inconsolata Nerd Font Regular:h12'
 vim.opt.encoding = 'utf-8'                       -- Use UTF-8 everywhere.
 vim.g.material_style = 'darker'
-vim.cmd('colorscheme material')
+vim.cmd('colorscheme railscasts')
 
 -- Recommneded by nvim-tree
 vim.g.loaded_netrw = 1

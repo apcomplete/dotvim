@@ -414,9 +414,6 @@ return require('packer').startup(function(use)
     end
   }
 
-  -- == Themes ==
-  use 'marko-cerovac/material.nvim'
-
   use { 'nvim-lualine/lualine.nvim',
     config = function()
       require('lualine').setup({
