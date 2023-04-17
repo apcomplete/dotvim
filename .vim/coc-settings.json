@@ -1,4 +1,6 @@
 {
   "diagnostic.displayByAle": true,
   "coc.preferences.formatOnSaveFiletypes": ["css", "markdown"],
+  "tsserver.trace.server": "verbose",
+  "elixir.pathToElixirLS": "~/Projects/elixir-ls/release/language_server.sh"
 }
