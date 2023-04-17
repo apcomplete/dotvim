@@ -1,8 +1,4 @@
 set nocompatible
-filetype off
-
-" Disable vim-jsx
-let g:polyglot_disabled = ['typescriptreact']
 
 call plug#begin('~/.vim/plugged')
 
@@ -29,15 +25,12 @@ Plug 'tpope/vim-rails'
 Plug 'avdgaag/vim-phoenix'
 Plug 'mhinz/vim-mix-format'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 
 "Syntax Highlighting
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'neoclide/vim-jsx-improve'
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 
 call plug#end()
-
-filetype plugin indent on
 
 runtime! config/*.vim
