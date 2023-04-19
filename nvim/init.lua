@@ -105,3 +105,7 @@ vim.api.nvim_set_hl(0, 'jsxComponentName', { link = 'xmlTagName' })
 vim.api.nvim_set_hl(0, 'jsxTag', { link = 'xmlTagName' })
 vim.api.nvim_set_hl(0, 'Pmenu', { link = 'Normal' })
 
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    pattern = { "*.ex", "*.exs" },
+    command = "TSBufEnable highlight",
+})
