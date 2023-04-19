@@ -103,8 +103,10 @@ vim.api.nvim_set_hl(0, 'jsxTagName', { link = 'xmlTagName' })
 vim.api.nvim_set_hl(0, 'jsxEndComponentName', { link = 'xmlTagName' })
 vim.api.nvim_set_hl(0, 'jsxComponentName', { link = 'xmlTagName' })
 vim.api.nvim_set_hl(0, 'jsxTag', { link = 'xmlTagName' })
+-- Pmenu is the context menu background for ctrl+K
 vim.api.nvim_set_hl(0, 'Pmenu', { link = 'Normal' })
 
+-- Syntax highlighting doesn't work on elixir files without forcing it this way
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
     pattern = { "*.ex", "*.exs" },
     command = "TSBufEnable highlight",
