@@ -165,7 +165,7 @@ return require('packer').startup(function(use)
           ----------------------
           --   Code Actions   --
           ----------------------
-          b.code_actions.eslint_d,
+          b.code_actions.eslint,
           b.code_actions.shellcheck,
 
           ----------------------
@@ -185,7 +185,7 @@ return require('packer').startup(function(use)
               return not credo_installed
             end,
           },
-          b.diagnostics.eslint_d,
+          b.diagnostics.eslint,
           b.diagnostics.yamllint,
           b.diagnostics.cfn_lint,
           -- require 'plugins.null-ls.commitlint',
@@ -214,7 +214,7 @@ return require('packer').startup(function(use)
           --   end,
           -- },
           -- b.formatting.pg_format,
-          -- b.formatting.prettierd,
+          b.formatting.prettier,
           -- b.formatting.shfmt,
           -- b.formatting.stylua,
 
