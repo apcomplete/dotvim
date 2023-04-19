@@ -111,21 +111,6 @@ return require('packer').startup(function(use)
     end
   }
 
-  use {
-    'dense-analysis/ale',
-    config = function()
-      vim.g.ale_lint_on_text_changed = 'never'
-      vim.g.ale_fixers = { elixir = { 'mix_format' } }
-      vim.g.ale_linters = {
-        elixir = { 'credo' },
-        javascript = { 'eslint' },
-        jsx = { 'eslint' },
-        typescript = { 'eslint', 'tslint', 'typecheck' },
-        typescriptreact = { 'eslint', 'tslint', 'typecheck' },
-      }
-    end
-  }
-
   -- ========== LSP ============
   use {
     "williamboman/mason.nvim",
@@ -263,7 +248,7 @@ return require('packer').startup(function(use)
   -- Mappings.
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
   local opts = { noremap = true, silent = true }
-  vim.keymap.set('n', '<LEADER>e', vim.diagnostic.open_float, opts)
+  --vim.keymap.set('n', '<LEADER>e', vim.diagnostic.open_float, opts)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
   vim.keymap.set('n', '<LEADER>q', vim.diagnostic.setloclist, opts)
@@ -328,11 +313,12 @@ return require('packer').startup(function(use)
   require('lspconfig')['tsserver'].setup({ flags = lsp_flags, on_attach = on_attach })
 
   -- Just needed if I have problems
-  -- vim.lsp.set_log_level("debug")
+  vim.lsp.set_log_level("debug")
 
   -- -- ========== Completeion ============
   -- Snippets, need to understand more about how to use this
-  use { 'L3MON4D3/LuaSnip',
+  use {
+    'L3MON4D3/LuaSnip',
     tag = 'v1.*',
     config = function()
       require('luasnip.loaders.from_vscode').lazy_load({ paths = './snippets' })
@@ -347,7 +333,8 @@ return require('packer').startup(function(use)
 
   -- The basis for configuring completion
   vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-  use { 'hrsh7th/nvim-cmp',
+  use {
+    'hrsh7th/nvim-cmp',
     config = function()
       local cmp = require('cmp')
       local luasnip = require('luasnip')
@@ -447,11 +434,12 @@ return require('packer').startup(function(use)
   vim.cmd('highlight GitGutterChangeDelete ctermfg=4')
 
   -- Syntax Highlighting
-  --
-  use { 'nvim-treesitter/nvim-treesitter',
-    config = function()
-      -- vim.cmd('TSUpdate')
 
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    build = ":TSUpdate",
+    requires = { { 'nvim-treesitter/playground' } },
+    config = function()
       require('nvim-treesitter.configs').setup({
         -- A list of parser names, or "all"
         ensure_installed = {
@@ -476,19 +464,27 @@ return require('packer').startup(function(use)
           'typescript',
           'vim',
         },
+        sync_install = false,
         -- Automatically install missing parsers when entering buffer
+        ignore_install = { 'javascript' },
         auto_install = true,
         highlight = {
-          enabled = true
+          enabled = true,
+          additional_vim_regex_highlighting = true,
         },
-        indent = {
-          enable = true
-        }
       })
     end
   }
 
-  use { 'nvim-lualine/lualine.nvim',
+  use {
+    'mhanberg/output-panel.nvim',
+    config = function()
+      require('output_panel').setup()
+    end
+  }
+
+  use {
+    'nvim-lualine/lualine.nvim',
     config = function()
       require('lualine').setup({
         options = {
@@ -496,6 +492,7 @@ return require('packer').startup(function(use)
           theme = 'auto',
         },
         sections = {
+          lualine_b = { 'branch', 'diff', 'diagnostics' },
           lualine_c = {
             {
               'filename',
