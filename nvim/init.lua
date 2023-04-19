@@ -1,7 +1,6 @@
 vim.g.mapleader = ','
 vim.opt.guifont = 'Inconsolata Nerd Font Regular:h12'
 vim.opt.encoding = 'utf-8'                       -- Use UTF-8 everywhere.
-vim.g.material_style = 'darker'
 vim.cmd('colorscheme railscasts')
 
 -- Recommneded by nvim-tree
@@ -62,13 +61,10 @@ vim.opt.writebackup = false                  -- And again.
 
 vim.cmd('set directory=/tmp/')
 
-if (vim.fn.has("mac") == 0)
-then
-  -- Put yanked text in a global clipboard so I can copy between instances like
-  -- a normal person. This breaks mac though, so not there
-  vim.cmd('set clipboard+=unnamedplus')
-  -- vim.opt.clipboard = 'unnamedplus'
-end
+-- Put yanked text in a global clipboard so I can copy between instances like
+-- a normal person. This breaks mac though, so not there
+vim.cmd('set clipboard+=unnamedplus')
+vim.opt.clipboard = 'unnamedplus'
 
 -- ignore on completions, used by command-t at least, likely others
 vim.opt.wildignore = vim.tbl_extend('force', vim.opt.wildignore or {}, {
