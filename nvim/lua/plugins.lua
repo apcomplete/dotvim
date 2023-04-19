@@ -7,16 +7,90 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use 'kien/ctrlp.vim'
+  use { 'nvim-telescope/telescope.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    branch = '0.1.x',
+    config = function()
+      local builtin = require('telescope.builtin')
+      vim.keymap.set('n', '<C-p>', builtin.find_files, {})
+      vim.keymap.set('n', 'fg', builtin.live_grep, {})
+      vim.keymap.set('n', 'fb', builtin.buffers, {})
+      vim.keymap.set('n', 'fh', builtin.help_tags, {})
+    end
+  }
+
   use 'scrooloose/nerdcommenter'
 
-  use { 'preservim/nerdtree',
+  use {
+    'preservim/nerdtree',
     config = function()
       vim.api.nvim_set_keymap('', '<Leader>w', ':NERDTreeToggle<CR>', { noremap = true })
     end
   }
 
-  use 'tpope/vim-projectionist'
+  use {
+    'rgroli/other.nvim',
+    config = function()
+      require('other-nvim').setup({
+        mappings = {
+          {
+            pattern = '/(.*)/(.*).tsx?$',
+            target = {
+              {
+                target = '/%1/%2.test.tsx',
+                context = 'tsx'
+              },
+              {
+                target = '/%1/%2.test.ts',
+                context = 'ts'
+              },
+            },
+            context = 'source'
+          },
+          {
+            pattern = '/(.*)/(.*).test.tsx?$',
+            target = {
+              {
+                target = '/%1/%2.tsx',
+                context = 'tsx'
+              },
+              {
+                target = '/%1/%2.ts',
+                context = 'ts'
+              },
+            },
+            context = 'test'
+          },
+          {
+            pattern = '/test/(.*)/(.*)_test.exs$',
+            target = '/lib/%2/%3.ex',
+            context = 'elixir source'
+          },
+          {
+            pattern = '/lib/(.*)/(.*).ex$',
+            target = '/test/%2/%3_test.exs',
+            context = 'elixir test'
+          },
+        },
+        style = {
+          -- How the plugin paints its window borders
+          -- Allowed values are none, single, double, rounded, solid and shadow
+          border = "solid",
+          -- Column seperator for the window
+          seperator = "|",
+          -- width of the window in percent. e.g. 0.5 is 50%, 1.0 is 100%
+          width = 0.7,
+          -- min height in rows.
+          -- when more columns are needed this value is extended automatically
+          minHeight = 2
+        },
+      })
+
+      vim.cmd 'command! A Other'
+      vim.cmd 'command! AV OtherVSplit'
+    end
+  }
+
   use 'tpope/vim-repeat'
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
