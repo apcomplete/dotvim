@@ -63,12 +63,12 @@ return require('packer').startup(function(use)
           },
           {
             pattern = '/test/(.*)/(.*)_test.exs$',
-            target = '/lib/%2/%3.ex',
+            target = '/lib/%1/%2.ex',
             context = 'elixir source'
           },
           {
             pattern = '/lib/(.*)/(.*).ex$',
-            target = '/test/%2/%3_test.exs',
+            target = '/test/%1/%2_test.exs',
             context = 'elixir test'
           },
         },
