@@ -39,68 +39,8 @@ return require('packer').startup(function(use)
     end
   }
 
-  use {
-    'rgroli/other.nvim',
-    config = function()
-      require('other-nvim').setup({
-        mappings = {
-          {
-            pattern = '/(.*)/(.*).tsx?$',
-            target = {
-              {
-                target = '/%1/%2.test.tsx',
-                context = 'tsx'
-              },
-              {
-                target = '/%1/%2.test.ts',
-                context = 'ts'
-              },
-            },
-            context = 'source'
-          },
-          {
-            pattern = '/(.*)/(.*).test.tsx?$',
-            target = {
-              {
-                target = '/%1/%2.tsx',
-                context = 'tsx'
-              },
-              {
-                target = '/%1/%2.ts',
-                context = 'ts'
-              },
-            },
-            context = 'test'
-          },
-          {
-            pattern = '/test/(.*)/(.*)_test.exs$',
-            target = '/lib/%1/%2.ex',
-            context = 'elixir source'
-          },
-          {
-            pattern = '/lib/(.*)/(.*).ex$',
-            target = '/test/%1/%2_test.exs',
-            context = 'elixir test'
-          },
-        },
-        style = {
-          -- How the plugin paints its window borders
-          -- Allowed values are none, single, double, rounded, solid and shadow
-          border = "solid",
-          -- Column seperator for the window
-          seperator = "|",
-          -- width of the window in percent. e.g. 0.5 is 50%, 1.0 is 100%
-          width = 0.7,
-          -- min height in rows.
-          -- when more columns are needed this value is extended automatically
-          minHeight = 2
-        },
-      })
-
-      vim.cmd 'command! A Other'
-      vim.cmd 'command! AV OtherVSplit'
-    end
-  }
+  use 'tpope/vim-projectionist'
+  require("projectionist").setup()
 
   use 'tpope/vim-repeat'
   use 'tpope/vim-surround'
@@ -326,7 +266,38 @@ return require('packer').startup(function(use)
   -- Just needed if I have problems
   vim.lsp.set_log_level("debug")
 
-  -- -- ========== Completeion ============
+  use {
+    'elixir-tools/elixir-tools.nvim',
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local elixir = require("elixir")
+      local elixirls = require("elixir.elixirls")
+
+      elixir.setup {
+        elixirls = {
+          settings = elixirls.settings {
+            dialyzerEnabled = true,
+            fetchDeps = true,
+            enableTestLenses = true,
+            suggestSpecs = true,
+          },
+          on_attach = function(client, bufnr)
+            local map_opts = { buffer = true, noremap = true }
+
+            -- run the codelens under the cursor
+            vim.keymap.set("n", "<leader>r", vim.lsp.codelens.run, map_opts)
+            -- remove the pipe operator
+            vim.keymap.set("n", "<leader>fp", ":ElixirFromPipe<cr>", map_opts)
+            -- add the pipe operator
+            vim.keymap.set("n", "<leader>tp", ":ElixirToPipe<cr>", map_opts)
+            vim.keymap.set("v", "<leader>em", ":ElixirExpandMacro<cr>", map_opts)
+          end
+        }
+      }
+    end
+  }
+
+  -- -- ========== Completion ============
   -- Snippets, need to understand more about how to use this
   use {
     'L3MON4D3/LuaSnip',

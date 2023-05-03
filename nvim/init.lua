@@ -3,7 +3,7 @@ vim.opt.guifont = 'Inconsolata Nerd Font Regular:h12'
 vim.opt.encoding = 'utf-8'                       -- Use UTF-8 everywhere.
 vim.cmd('colorscheme railscasts')
 
--- Recommneded by nvim-tree
+-- Recommended by nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -83,7 +83,7 @@ vim.opt.wildignore = vim.tbl_extend('force', vim.opt.wildignore or {}, {
 
 vim.opt.foldmethod = 'manual'             -- I don't always fold code, but when I do, I do it manually
 
--- Show Git diff in window split when commiting
+-- Show Git diff in window split when committing
 vim.cmd('au FileType gitcommit DiffGitCached | wincmd L | wincmd p')
 
 vim.api.nvim_set_hl(0, '@tag', { link = 'xmlTagName' })
