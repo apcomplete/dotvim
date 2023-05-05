@@ -117,16 +117,18 @@ return require('packer').startup(function(use)
           --   Code Actions   --
           ----------------------
           b.code_actions.eslint,
-          b.code_actions.shellcheck,
+          --b.code_actions.shellcheck,
 
           ----------------------
           --    Diagnostics   --
           ----------------------
-          b.diagnostics.actionlint,
-          b.diagnostics.codespell,
+          --b.diagnostics.actionlint,
+          --b.diagnostics.codespell,
 
           b.diagnostics.credo.with {
             -- run credo in strict mode even if strict mode is not enabled in
+            -- credo takes more than 5s... :(
+            timeout = 10000,
             -- .credo.exs
             extra_args = { '--strict' },
             -- only register credo source if it is installed in the current project
@@ -137,42 +139,42 @@ return require('packer').startup(function(use)
             end,
           },
           b.diagnostics.eslint,
-          b.diagnostics.yamllint,
-          b.diagnostics.cfn_lint,
+          -- b.diagnostics.yamllint,
+          -- b.diagnostics.cfn_lint,
           -- require 'plugins.null-ls.commitlint',
 
           -- ----------------------
           -- --    Formatters    --
           -- ----------------------
           -- -- Doesn't work for heex files
-          -- b.formatting.mix.with {
-          --   extra_filetypes = { 'eelixir', 'heex' },
-          --   args = { 'format', '-' },
-          --   extra_args = function(_params)
-          --     local version_output = vim.fn.system 'elixir -v'
-          --     local minor_version = vim.fn.matchlist(version_output, 'Elixir \\d.\\(\\d\\+\\)')[2]
-          --
-          --     local extra_args = {}
-          --
-          --     -- tells the formatter the filename for the code passed to it via stdin.
-          --     -- This allows formatting heex files correctly. Only available for
-          --     -- Elixir >= 1.14
-          --     if tonumber(minor_version, 10) >= 14 then
-          --       extra_args = { '--stdin-filename', '$FILENAME' }
-          --     end
-          --
-          --     return extra_args
-          --   end,
-          -- },
-          -- b.formatting.pg_format,
+          b.formatting.mix.with {
+            extra_filetypes = {},
+            args = { 'format', '-', '--dot-formatter', '$ROOT/.formatter.exs' }
+            --extra_args = function(_params)
+            --local version_output = vim.fn.system 'elixir -v'
+            --local minor_version = vim.fn.matchlist(version_output, 'Elixir \\d.\\(\\d\\+\\)')[2]
+
+            --local extra_args = {}
+
+            ---- tells the formatter the filename for the code passed to it via stdin.
+            ---- This allows formatting heex files correctly. Only available for
+            ---- Elixir >= 1.14
+            --if tonumber(minor_version, 10) >= 14 then
+            --extra_args = { '--stdin-filename', '$FILENAME' }
+            --end
+
+            --return extra_args
+            --end,
+          },
+          --b.formatting.pg_format,
           b.formatting.prettier,
           -- b.formatting.shfmt,
           -- b.formatting.stylua,
 
           -- python
-          b.diagnostics.flake8.with {
-            command = '.venv/bin/flake8',
-          },
+          --b.diagnostics.flake8.with {
+          --command = '.venv/bin/flake8',
+          --},
           -- b.formatting.isort.with {
           --   command = '.venv/bin/isort',
           -- },
@@ -239,17 +241,17 @@ return require('packer').startup(function(use)
   lsp_defaults.capabilities = vim.tbl_deep_extend('force', lsp_defaults.capabilities,
     require('cmp_nvim_lsp').default_capabilities())
 
-  require('lspconfig')['bashls'].setup({ flags = lsp_flags, on_attach = on_attach })
-  require('lspconfig')['cssls'].setup({ flags = lsp_flags, on_attach = on_attach })
-  require('lspconfig')['dockerls'].setup({ flags = lsp_flags, on_attach = on_attach })
-  require('lspconfig')['elixirls'].setup({ flags = lsp_flags, on_attach = on_attach })
-  require('lspconfig')['html'].setup({ flags = lsp_flags, on_attach = on_attach })
-  require('lspconfig')['jsonls'].setup({ flags = lsp_flags, on_attach = on_attach })
-  require('lspconfig')['marksman'].setup({ flags = lsp_flags, on_attach = on_attach }) -- markdown
-  require('lspconfig')['pyright'].setup({ flags = lsp_flags, on_attach = on_attach })
-  require('lspconfig')['ruby_ls'].setup({ flags = lsp_flags, on_attach = on_attach })
-  require('lspconfig')['sqlls'].setup({ flags = lsp_flags, on_attach = on_attach })
-  require('lspconfig')['lua_ls'].setup({
+  lspconfig.bashls.setup({ flags = lsp_flags, on_attach = on_attach })
+  lspconfig.cssls.setup({ flags = lsp_flags, on_attach = on_attach })
+  lspconfig.dockerls.setup({ flags = lsp_flags, on_attach = on_attach })
+  lspconfig.elixirls.setup({ flags = lsp_flags, on_attach = on_attach })
+  lspconfig.html.setup({ flags = lsp_flags, on_attach = on_attach })
+  lspconfig.jsonls.setup({ flags = lsp_flags, on_attach = on_attach })
+  lspconfig.marksman.setup({ flags = lsp_flags, on_attach = on_attach }) -- markdown
+  lspconfig.pyright.setup({ flags = lsp_flags, on_attach = on_attach })
+  lspconfig.ruby_ls.setup({ flags = lsp_flags, on_attach = on_attach })
+  lspconfig.sqlls.setup({ flags = lsp_flags, on_attach = on_attach })
+  lspconfig.lua_ls.setup({
     flags = lsp_flags,
     on_attach = on_attach,
     settings = {
@@ -261,10 +263,10 @@ return require('packer').startup(function(use)
       },
     },
   })
-  require('lspconfig')['tsserver'].setup({ flags = lsp_flags, on_attach = on_attach })
+  lspconfig.tsserver.setup({ flags = lsp_flags, on_attach = on_attach })
 
   -- Just needed if I have problems
-  vim.lsp.set_log_level("debug")
+  -- vim.lsp.set_log_level("debug")
 
   use {
     'elixir-tools/elixir-tools.nvim',
@@ -274,23 +276,28 @@ return require('packer').startup(function(use)
       local elixirls = require("elixir.elixirls")
 
       elixir.setup {
+        credo = { enable = false },
         elixirls = {
+          enable = false,
           settings = elixirls.settings {
+            -- there's a bug where formatting won't respect formatter.exs while the app is building
+            -- https://github.com/elixir-lsp/elixir-ls/issues/526
+            autoBuild = false,
             dialyzerEnabled = true,
             fetchDeps = true,
             enableTestLenses = true,
-            suggestSpecs = true,
+            suggestSpecs = false,
           },
           on_attach = function(client, bufnr)
-            local map_opts = { buffer = true, noremap = true }
+            local bufopts = { buffer = true, noremap = true }
 
             -- run the codelens under the cursor
-            vim.keymap.set("n", "<leader>r", vim.lsp.codelens.run, map_opts)
+            vim.keymap.set("n", "<leader>r", vim.lsp.codelens.run, bufopts)
             -- remove the pipe operator
-            vim.keymap.set("n", "<leader>fp", ":ElixirFromPipe<cr>", map_opts)
+            vim.keymap.set("n", "<leader>fp", ":ElixirFromPipe<cr>", bufopts)
             -- add the pipe operator
-            vim.keymap.set("n", "<leader>tp", ":ElixirToPipe<cr>", map_opts)
-            vim.keymap.set("v", "<leader>em", ":ElixirExpandMacro<cr>", map_opts)
+            vim.keymap.set("n", "<leader>tp", ":ElixirToPipe<cr>", bufopts)
+            vim.keymap.set("v", "<leader>em", ":ElixirExpandMacro<cr>", bufopts)
           end
         }
       }
@@ -401,10 +408,6 @@ return require('packer').startup(function(use)
   -- Rails
   -- use 'tpope/vim-rails'
 
-  -- Elixir
-  use { 'mhinz/vim-mix-format', ft = { 'elixir' } }
-  use { 'avdgaag/vim-phoenix', ft = { 'elixir' } }
-
   -- Git
   use 'airblade/vim-gitgutter'
 
@@ -440,7 +443,6 @@ return require('packer').startup(function(use)
           'markdown',
           'python',
           'ruby',
-          'rust',
           'scss',
           'tsx',
           'typescript',
@@ -452,6 +454,14 @@ return require('packer').startup(function(use)
         auto_install = true,
         highlight = {
           enabled = true,
+          -- disable highlighting for large files
+          disable = function(lang, buf)
+            local max_filesize = 100 * 1024 -- 100 KB
+            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            if ok and stats and stats.size > max_filesize then
+              return true
+            end
+          end,
           additional_vim_regex_highlighting = true,
         },
       })
