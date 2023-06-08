@@ -13,9 +13,9 @@ return require('packer').startup(function(use)
     config = function()
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<C-p>', builtin.find_files, {})
-      vim.keymap.set('n', 'fg', builtin.live_grep, {})
-      vim.keymap.set('n', 'fb', builtin.buffers, {})
-      vim.keymap.set('n', 'fh', builtin.help_tags, {})
+      vim.keymap.set('n', '<Leader>fg', builtin.live_grep, {})
+      vim.keymap.set('n', '<Leader>fb', builtin.buffers, {})
+      vim.keymap.set('n', '<Leader>fh', builtin.help_tags, {})
 
       require('telescope').setup({
         defaults = {
@@ -87,7 +87,7 @@ return require('packer').startup(function(use)
       'bashls',
       'cssls',
       'dockerls',
-      'elixirls',
+      --'elixirls',
       'html',
       'jsonls',
       'marksman', -- markdown
@@ -147,25 +147,25 @@ return require('packer').startup(function(use)
           -- --    Formatters    --
           -- ----------------------
           -- -- Doesn't work for heex files
-          b.formatting.mix.with {
-            extra_filetypes = {},
-            args = { 'format', '-', '--dot-formatter', '$ROOT/.formatter.exs' }
-            --extra_args = function(_params)
-            --local version_output = vim.fn.system 'elixir -v'
-            --local minor_version = vim.fn.matchlist(version_output, 'Elixir \\d.\\(\\d\\+\\)')[2]
+          --b.formatting.mix.with {
+          --extra_filetypes = {},
+          --args = { 'format', '-', '--dot-formatter', '$ROOT/.formatter.exs' }
+          --extra_args = function(_params)
+          --local version_output = vim.fn.system 'elixir -v'
+          --local minor_version = vim.fn.matchlist(version_output, 'Elixir \\d.\\(\\d\\+\\)')[2]
 
-            --local extra_args = {}
+          --local extra_args = {}
 
-            ---- tells the formatter the filename for the code passed to it via stdin.
-            ---- This allows formatting heex files correctly. Only available for
-            ---- Elixir >= 1.14
-            --if tonumber(minor_version, 10) >= 14 then
-            --extra_args = { '--stdin-filename', '$FILENAME' }
-            --end
+          ---- tells the formatter the filename for the code passed to it via stdin.
+          ---- This allows formatting heex files correctly. Only available for
+          ---- Elixir >= 1.14
+          --if tonumber(minor_version, 10) >= 14 then
+          --extra_args = { '--stdin-filename', '$FILENAME' }
+          --end
 
-            --return extra_args
-            --end,
-          },
+          --return extra_args
+          --end,
+          --},
           --b.formatting.pg_format,
           b.formatting.prettier,
           -- b.formatting.shfmt,
@@ -244,7 +244,6 @@ return require('packer').startup(function(use)
   lspconfig.bashls.setup({ flags = lsp_flags, on_attach = on_attach })
   lspconfig.cssls.setup({ flags = lsp_flags, on_attach = on_attach })
   lspconfig.dockerls.setup({ flags = lsp_flags, on_attach = on_attach })
-  lspconfig.elixirls.setup({ flags = lsp_flags, on_attach = on_attach })
   lspconfig.html.setup({ flags = lsp_flags, on_attach = on_attach })
   lspconfig.jsonls.setup({ flags = lsp_flags, on_attach = on_attach })
   lspconfig.marksman.setup({ flags = lsp_flags, on_attach = on_attach }) -- markdown
@@ -278,19 +277,33 @@ return require('packer').startup(function(use)
       elixir.setup {
         credo = { enable = false },
         elixirls = {
-          enable = false,
+          enable = true,
           settings = elixirls.settings {
             -- there's a bug where formatting won't respect formatter.exs while the app is building
             -- https://github.com/elixir-lsp/elixir-ls/issues/526
-            autoBuild = false,
             dialyzerEnabled = true,
             fetchDeps = true,
             enableTestLenses = true,
             suggestSpecs = false,
           },
           on_attach = function(client, bufnr)
-            local bufopts = { buffer = true, noremap = true }
+            local bufopts = { buffer = bufnr, noremap = true }
 
+            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+            vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, bufopts)
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+            vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+            vim.keymap.set('n', '<LEADER>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+            vim.keymap.set('n', '<LEADER>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+            vim.keymap.set('n', '<LEADER>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+            bufopts)
+            vim.keymap.set('n', '<LEADER>D', vim.lsp.buf.type_definition, bufopts)
+            vim.keymap.set('n', '<LEADER>rn', vim.lsp.buf.rename, bufopts)
+            vim.keymap.set('n', '<LEADER>ca', vim.lsp.buf.code_action, bufopts)
+            vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+            vim.keymap.set('n', '<LEADER>p', function() vim.lsp.buf.format { async = true } end, bufopts)
             -- run the codelens under the cursor
             vim.keymap.set("n", "<leader>r", vim.lsp.codelens.run, bufopts)
             -- remove the pipe operator

@@ -12,12 +12,12 @@ require("mappings")
 
 vim.opt.shell = '/bin/zsh'
 
--- How to do this in Lua?
-vim.cmd('filetype plugin indent on')    -- required
-
 -- Syntax
 vim.cmd('syntax enable') -- Turn on syntax highlighting.
 -- vim.opt.synmaxcol=200     -- Only highlight 200 cols for performance.
+--
+-- How to do this in Lua?
+vim.cmd('filetype plugin indent on')    -- required
 
 vim.opt.autoindent = true                    -- Match indentation of previous line
 vim.opt.backspace = 'indent,eol,start'       -- Make backspace work in insert mode
@@ -105,6 +105,8 @@ vim.api.nvim_set_hl(0, 'jsxComponentName', { link = 'xmlTagName' })
 vim.api.nvim_set_hl(0, 'jsxTag', { link = 'xmlTagName' })
 -- Pmenu is the context menu background for ctrl+K
 vim.api.nvim_set_hl(0, 'Pmenu', { link = 'Normal' })
+
+vim.cmd('autocmd BufWritePost lua/plugins.lua luafile lua/plugins.lua')
 
 -- Syntax highlighting doesn't work on elixir files without forcing it this way
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
