@@ -20,7 +20,7 @@ vim.keymap.set('i', '<C-l>', '<Space>=><Space>')
 -- Yank from the cursor to the end of the line, to be consistent with C and D.
 vim.keymap.set('n', 'Y', 'y$', { noremap = true })
 
--- clean up trailing whitespace map 
+-- clean up trailing whitespace map
 local delete_trailing_ws = function()
   -- Save cursor position to later restore
   local curpos = vim.api.nvim_win_get_cursor(0)
