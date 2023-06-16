@@ -10,6 +10,10 @@ local config = {
       type = "test",
       alternate = { "{}.test.tsx", "{}.test.ts", "{}.test.js" }
     },
+    ["*.test.tsx"] = {
+      type = "src",
+      alternate = { "{}.ts", "{}.tsx" }
+    },
     ["*.test.ts"] = {
       type = "src",
       alternate = { "{}.ts", "{}.tsx" }
