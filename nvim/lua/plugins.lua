@@ -1,14 +1,9 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
-
-return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-
-  use { 'nvim-telescope/telescope.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
+return require('lazy').setup({
+  {
+    'nvim-telescope/telescope.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
     branch = '0.1.x',
     config = function()
       local builtin = require('telescope.builtin')
@@ -28,50 +23,140 @@ return require('packer').startup(function(use)
         }
       })
     end
-  }
-
-  use 'scrooloose/nerdcommenter'
-
-  use {
+  },
+  'scrooloose/nerdcommenter',
+  {
     'preservim/nerdtree',
     config = function()
       vim.api.nvim_set_keymap('', '<Leader>w', ':NERDTreeToggle<CR>', { noremap = true })
     end
-  }
+  },
 
-  use 'tpope/vim-projectionist'
-  require("projectionist").setup()
+  {
+    'tpope/vim-projectionist',
+    config = function()
+      require("projectionist").setup()
+    end
+  },
+  'tpope/vim-repeat',
+  'tpope/vim-surround',
+  'tpope/vim-unimpaired',
 
-  use 'tpope/vim-repeat'
-  use 'tpope/vim-surround'
-  use 'tpope/vim-unimpaired'
-
-  use {
+  {
     'vim-scripts/bufexplorer.zip',
     config = function()
       vim.g.bufExplorerFindActive = 0
     end
-  }
+  },
 
   -- Better file searching
-  use {
+  {
     'mileszs/ack.vim',
     config = function()
       vim.g.ackprg = 'rg --vimgrep --smart-case'
       vim.cmd('cnoreabbrev Ack Ack!')
     end
-  }
+  },
 
   -- ========== LSP ============
-  use {
+  {
     "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
+    config = function()
+      require('mason').setup()
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          'bashls',
+          'cssls',
+          'dockerls',
+          --'elixirls',
+          'html',
+          'jsonls',
+          'marksman', -- markdown
+          'pyright',
+          'ruby_ls',
+          'sqlls',
+          'lua_ls',
+          'tsserver',
+        },
+        automatic_installation = true,
+      })
+    end
+  },
+  "williamboman/mason-lspconfig.nvim",
+  {
     "neovim/nvim-lspconfig",
-  }
+    config = function()
+      -- Mappings.
+      -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+      local opts = { noremap = true, silent = true }
+      vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+      vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+      vim.keymap.set('n', '<LEADER>q', vim.diagnostic.setloclist, opts)
 
-  use {
+      -- Use an on_attach function to only map the following keys
+      -- after the language server attaches to the current buffer
+      local on_attach = function(client, bufnr)
+        -- Enable completion triggered by <c-x><c-o>
+        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+        -- Mappings.
+        -- See `:help vim.lsp.*` for documentation on any of the below functions
+        local bufopts = { noremap = true, buffer = bufnr }
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+        vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, bufopts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+        vim.keymap.set('n', '<LEADER>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+        vim.keymap.set('n', '<LEADER>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+        vim.keymap.set('n', '<LEADER>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+          bufopts)
+        vim.keymap.set('n', '<LEADER>D', vim.lsp.buf.type_definition, bufopts)
+        vim.keymap.set('n', '<LEADER>rn', vim.lsp.buf.rename, bufopts)
+        vim.keymap.set('n', '<LEADER>ca', vim.lsp.buf.code_action, bufopts)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+        vim.keymap.set('n', '<LEADER>p', function() vim.lsp.buf.format { async = true } end, bufopts)
+      end
+
+      local lsp_flags = {
+        debounce_text_changes = 150
+      }
+
+      -- hook up cmp_nvim_lsp for completion
+      local lspconfig = require('lspconfig')
+      local lsp_defaults = lspconfig.util.default_config
+      lsp_defaults.capabilities = vim.tbl_deep_extend('force', lsp_defaults.capabilities,
+        require('cmp_nvim_lsp').default_capabilities())
+
+      lspconfig.bashls.setup({ flags = lsp_flags, on_attach = on_attach })
+      lspconfig.cssls.setup({ flags = lsp_flags, on_attach = on_attach })
+      lspconfig.dockerls.setup({ flags = lsp_flags, on_attach = on_attach })
+      lspconfig.html.setup({ flags = lsp_flags, on_attach = on_attach })
+      lspconfig.jsonls.setup({ flags = lsp_flags, on_attach = on_attach })
+      lspconfig.marksman.setup({ flags = lsp_flags, on_attach = on_attach }) -- markdown
+      lspconfig.pyright.setup({ flags = lsp_flags, on_attach = on_attach })
+      lspconfig.ruby_ls.setup({ flags = lsp_flags, on_attach = on_attach })
+      lspconfig.sqlls.setup({ flags = lsp_flags, on_attach = on_attach })
+      lspconfig.lua_ls.setup({
+        flags = lsp_flags,
+        on_attach = on_attach,
+        settings = {
+          Lua = {
+            diagnostics = {
+              -- Get the language server to recognize the `vim` global
+              globals = { 'vim' },
+            },
+          },
+        },
+      })
+      lspconfig.tsserver.setup({ flags = lsp_flags, on_attach = on_attach })
+    end
+  },
+  {
     "someone-stole-my-name/yaml-companion.nvim",
-    requires = {
+    dependencies = {
       { "neovim/nvim-lspconfig" },
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope.nvim" },
@@ -79,34 +164,14 @@ return require('packer').startup(function(use)
     config = function()
       require("telescope").load_extension("yaml_schema")
     end,
-  }
-
-  require('mason').setup()
-  require("mason-lspconfig").setup({
-    ensure_installed = {
-      'bashls',
-      'cssls',
-      'dockerls',
-      --'elixirls',
-      'html',
-      'jsonls',
-      'marksman', -- markdown
-      'pyright',
-      'ruby_ls',
-      'sqlls',
-      'lua_ls',
-      'tsserver',
-    },
-    automatic_installation = true,
-  })
-
-  -- Use Neovim as a language server to inject LSP diagnostics, code
-  -- actions, and more via Lua.
-  use {
+  },
+  ---- Use Neovim as a language server to inject LSP diagnostics, code
+  ---- actions, and more via Lua.
+  {
     'jose-elias-alvarez/null-ls.nvim',
-    requires = {
+    dependencies = {
       'nvim-lua/plenary.nvim',
-      -- 'lukas-reineke/lsp-format.nvim',
+      'lukas-reineke/lsp-format.nvim',
     },
     config = function()
       local b = require('null-ls.builtins')
@@ -189,87 +254,13 @@ return require('packer').startup(function(use)
         -- end,
       })
     end
-  }
-
-  -- Use internal formatting for bindings like gq. null-ls or neovim messes this up somehow
-  vim.api.nvim_create_autocmd('LspAttach', {
-    callback = function(args)
-      vim.bo[args.buf].formatexpr = nil
-    end,
-  })
-
-  -- Mappings.
-  -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-  local opts = { noremap = true, silent = true }
-  vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-  vim.keymap.set('n', '<LEADER>q', vim.diagnostic.setloclist, opts)
-
-  -- Use an on_attach function to only map the following keys
-  -- after the language server attaches to the current buffer
-  local on_attach = function(client, bufnr)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap = true, buffer = bufnr }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<LEADER>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-    vim.keymap.set('n', '<LEADER>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-    vim.keymap.set('n', '<LEADER>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
-    vim.keymap.set('n', '<LEADER>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<LEADER>rn', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<LEADER>ca', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<LEADER>p', function() vim.lsp.buf.format { async = true } end, bufopts)
-  end
-
-  local lsp_flags = {
-    debounce_text_changes = 150
-  }
-
-  -- hook up cmp_nvim_lsp for completion
-  local lspconfig = require('lspconfig')
-  local lsp_defaults = lspconfig.util.default_config
-  lsp_defaults.capabilities = vim.tbl_deep_extend('force', lsp_defaults.capabilities,
-    require('cmp_nvim_lsp').default_capabilities())
-
-  lspconfig.bashls.setup({ flags = lsp_flags, on_attach = on_attach })
-  lspconfig.cssls.setup({ flags = lsp_flags, on_attach = on_attach })
-  lspconfig.dockerls.setup({ flags = lsp_flags, on_attach = on_attach })
-  lspconfig.html.setup({ flags = lsp_flags, on_attach = on_attach })
-  lspconfig.jsonls.setup({ flags = lsp_flags, on_attach = on_attach })
-  lspconfig.marksman.setup({ flags = lsp_flags, on_attach = on_attach }) -- markdown
-  lspconfig.pyright.setup({ flags = lsp_flags, on_attach = on_attach })
-  lspconfig.ruby_ls.setup({ flags = lsp_flags, on_attach = on_attach })
-  lspconfig.sqlls.setup({ flags = lsp_flags, on_attach = on_attach })
-  lspconfig.lua_ls.setup({
-    flags = lsp_flags,
-    on_attach = on_attach,
-    settings = {
-      Lua = {
-        diagnostics = {
-          -- Get the language server to recognize the `vim` global
-          globals = { 'vim' },
-        },
-      },
-    },
-  })
-  lspconfig.tsserver.setup({ flags = lsp_flags, on_attach = on_attach })
-
+  },
   -- Just needed if I have problems
   -- vim.lsp.set_log_level("debug")
 
-  use {
+  {
     'elixir-tools/elixir-tools.nvim',
-    requires = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       local elixir = require("elixir")
       local elixirls = require("elixir.elixirls")
@@ -298,7 +289,7 @@ return require('packer').startup(function(use)
             vim.keymap.set('n', '<LEADER>wa', vim.lsp.buf.add_workspace_folder, bufopts)
             vim.keymap.set('n', '<LEADER>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
             vim.keymap.set('n', '<LEADER>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-            bufopts)
+              bufopts)
             vim.keymap.set('n', '<LEADER>D', vim.lsp.buf.type_definition, bufopts)
             vim.keymap.set('n', '<LEADER>rn', vim.lsp.buf.rename, bufopts)
             vim.keymap.set('n', '<LEADER>ca', vim.lsp.buf.code_action, bufopts)
@@ -315,27 +306,29 @@ return require('packer').startup(function(use)
         }
       }
     end
-  }
+  },
 
   -- -- ========== Completion ============
   -- Snippets, need to understand more about how to use this
-  use {
+  {
     'L3MON4D3/LuaSnip',
-    tag = 'v1.*',
     config = function()
       require('luasnip.loaders.from_vscode').lazy_load({ paths = './snippets' })
     end
-  }
-  use('rafamadriz/friendly-snippets') -- language specific snippets
+  },
+  'rafamadriz/friendly-snippets', -- language specific snippets
 
-  use('saadparwaiz1/cmp_luasnip')     -- completion from snippets
-  use('hrsh7th/cmp-nvim-lsp')         -- completion from LSP
-  use('hrsh7th/cmp-buffer')           -- completion from this buffer
-  use('hrsh7th/cmp-path')             -- completion from file paths
-
-  -- The basis for configuring completion
-  vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-  use {
+  'saadparwaiz1/cmp_luasnip',     -- completion from snippets
+  {
+    'hrsh7th/cmp-nvim-lsp',       -- completion from LSP
+    config = function()
+      -- The basis for configuring completion
+      vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+    end
+  },
+  'hrsh7th/cmp-buffer', -- completion from this buffer
+  'hrsh7th/cmp-path',   -- completion from file paths
+  {
     'hrsh7th/nvim-cmp',
     config = function()
       local cmp = require('cmp')
@@ -416,27 +409,30 @@ return require('packer').startup(function(use)
         },
       })
     end
-  }
+  },
 
   -- Rails
-  -- use 'tpope/vim-rails'
+  -- 'tpope/vim-rails',
 
   -- Git
-  use 'airblade/vim-gitgutter'
-
-  -- some stupid config around gitgutter to keep line numbers showing up
-  vim.cmd('highlight clear SignColumn')
-  vim.cmd('highlight GitGutterAdd ctermfg=2')
-  vim.cmd('highlight GitGutterChange ctermfg=3')
-  vim.cmd('highlight GitGutterDelete ctermfg=1')
-  vim.cmd('highlight GitGutterChangeDelete ctermfg=4')
+  {
+    'airblade/vim-gitgutter',
+    config = function()
+      --  -- some stupid config around gitgutter to keep line numbers showing up
+      vim.cmd('highlight clear SignColumn')
+      vim.cmd('highlight GitGutterAdd ctermfg=2')
+      vim.cmd('highlight GitGutterChange ctermfg=3')
+      vim.cmd('highlight GitGutterDelete ctermfg=1')
+      vim.cmd('highlight GitGutterChangeDelete ctermfg=4')
+    end
+  },
 
   -- Syntax Highlighting
 
-  use {
+  {
     'nvim-treesitter/nvim-treesitter',
     build = ":TSUpdate",
-    requires = { { 'nvim-treesitter/playground' } },
+    dependencies = { { 'nvim-treesitter/playground' } },
     config = function()
       require('nvim-treesitter.configs').setup({
         -- A list of parser names, or "all"
@@ -479,16 +475,16 @@ return require('packer').startup(function(use)
         },
       })
     end
-  }
+  },
 
-  use {
+  {
     'mhanberg/output-panel.nvim',
     config = function()
       require('output_panel').setup()
     end
-  }
+  },
 
-  use {
+  {
     'nvim-lualine/lualine.nvim',
     config = function()
       require('lualine').setup({
@@ -516,11 +512,10 @@ return require('packer').startup(function(use)
         },
       })
     end
-  }
-
-  use {
+  },
+  {
     'folke/trouble.nvim',
-    requires = 'nvim-tree/nvim-web-devicons',
+    dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
       require('trouble').setup {
         -- your configuration comes here
@@ -529,4 +524,4 @@ return require('packer').startup(function(use)
       }
     end
   }
-end)
+})

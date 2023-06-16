@@ -1,6 +1,21 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Use comma as leader
 vim.g.mapleader = ','
+
 vim.opt.guifont = 'Inconsolata Nerd Font Regular:h12'
-vim.opt.encoding = 'utf-8'                       -- Use UTF-8 everywhere.
+vim.opt.encoding = 'utf-8' -- Use UTF-8 everywhere.
 vim.cmd('colorscheme railscasts')
 
 -- Recommended by nvim-tree
@@ -17,47 +32,47 @@ vim.cmd('syntax enable') -- Turn on syntax highlighting.
 -- vim.opt.synmaxcol=200     -- Only highlight 200 cols for performance.
 --
 -- How to do this in Lua?
-vim.cmd('filetype plugin indent on')    -- required
+vim.cmd('filetype plugin indent on')                             -- required
 
-vim.opt.autoindent = true                    -- Match indentation of previous line
-vim.opt.backspace = 'indent,eol,start'       -- Make backspace work in insert mode
-vim.opt.backup = false                       -- Don't make a backup before overwriting a file.
-vim.opt.cmdheight = 2                        -- Give more space for displaying messages.
-vim.opt.display = 'lastline'                 -- When lines are cropped at the screen bottom, show as much as possible
-vim.opt.expandtab = true                     -- Use spaces instead of tabs because we're not a monster
-vim.opt.gdefault = true                      -- Assume the /g flag on substitutions to replace all matches in a line
-vim.opt.guicursor = 'a:blinkon0'             -- Don't blink the cursor
-vim.opt.hidden = true                        -- Handle multiple buffers better.
-vim.opt.hlsearch = true                      -- Highlight matches.
-vim.opt.ignorecase = true                    -- Case-insensitive searching.
-vim.opt.incsearch = true                     -- Highlight matches as you type.
-vim.opt.laststatus = 2                       -- Show the status line all the time
-vim.opt.linebreak = true                     -- Be smart about wrapping
-vim.opt.list = true                          -- Show invisibles, display tabs as '▸   ', trailing spaces as '•'
+vim.opt.autoindent = true                                        -- Match indentation of previous line
+vim.opt.backspace = 'indent,eol,start'                           -- Make backspace work in insert mode
+vim.opt.backup = false                                           -- Don't make a backup before overwriting a file.
+vim.opt.cmdheight = 2                                            -- Give more space for displaying messages.
+vim.opt.display = 'lastline'                                     -- When lines are cropped at the screen bottom, show as much as possible
+vim.opt.expandtab = true                                         -- Use spaces instead of tabs because we're not a monster
+vim.opt.gdefault = true                                          -- Assume the /g flag on substitutions to replace all matches in a line
+vim.opt.guicursor = 'a:blinkon0'                                 -- Don't blink the cursor
+vim.opt.hidden = true                                            -- Handle multiple buffers better.
+vim.opt.hlsearch = true                                          -- Highlight matches.
+vim.opt.ignorecase = true                                        -- Case-insensitive searching.
+vim.opt.incsearch = true                                         -- Highlight matches as you type.
+vim.opt.laststatus = 2                                           -- Show the status line all the time
+vim.opt.linebreak = true                                         -- Be smart about wrapping
+vim.opt.list = true                                              -- Show invisibles, display tabs as '▸   ', trailing spaces as '•'
 vim.opt.listchars = 'tab:> ,trail:-,extends:>,precedes:<,nbsp:+' -- Highlight trailing whitespace
-vim.opt.mouse = 'a'                          -- Enable mouse
-vim.opt.visualbell = false                   -- Don't flash my screen
-vim.opt.number = true                        -- Show line numbers by default.
-vim.opt.relativenumber = true                -- Relative line numbers for non-current line
-vim.opt.ruler = true                         -- Show cursor position.
-vim.opt.scrolloff = 4                        -- Show 4 lines of context around the cursor.
-vim.opt.shiftwidth= 2                        -- But doesn't mean I want everything indented to tabstop.
-vim.opt.showcmd = true                       -- Display incomplete commands.
-vim.opt.showmatch = true                     -- Highlight matching brackets
-vim.opt.showmode = true                      -- Display the mode you're in.
+vim.opt.mouse = 'a'                                              -- Enable mouse
+vim.opt.visualbell = false                                       -- Don't flash my screen
+vim.opt.number = true                                            -- Show line numbers by default.
+vim.opt.relativenumber = true                                    -- Relative line numbers for non-current line
+vim.opt.ruler = true                                             -- Show cursor position.
+vim.opt.scrolloff = 4                                            -- Show 4 lines of context around the cursor.
+vim.opt.shiftwidth = 2                                           -- But doesn't mean I want everything indented to tabstop.
+vim.opt.showcmd = true                                           -- Display incomplete commands.
+vim.opt.showmatch = true                                         -- Highlight matching brackets
+vim.opt.showmode = true                                          -- Display the mode you're in.
 vim.opt.sidescrolloff = 10
-vim.opt.smartcase = true                     -- But case-sensitive if expression contains a capital letter.
-vim.opt.smarttab = true                      -- Use spaces instead of tabs because we're not a monster
-vim.opt.splitbelow = true                    -- Default split direction
-vim.opt.splitright = true                    -- Default split direction
-vim.opt.softtabstop = 2                      -- 2 space tabs
-vim.opt.tabstop = 2                          -- 2 space tabs
-vim.opt.title = true                         -- Set the terminal's title
-vim.opt.ttyfast = true                       -- smoother output, we're not on a 1200 dialup :)
-vim.opt.wildmenu = true                      -- Autocompletion list
-vim.opt.wildmode = 'list:longest'            -- Complete files like a shell.
+vim.opt.smartcase = true                                         -- But case-sensitive if expression contains a capital letter.
+vim.opt.smarttab = true                                          -- Use spaces instead of tabs because we're not a monster
+vim.opt.splitbelow = true                                        -- Default split direction
+vim.opt.splitright = true                                        -- Default split direction
+vim.opt.softtabstop = 2                                          -- 2 space tabs
+vim.opt.tabstop = 2                                              -- 2 space tabs
+vim.opt.title = true                                             -- Set the terminal's title
+vim.opt.ttyfast = true                                           -- smoother output, we're not on a 1200 dialup :)
+vim.opt.wildmenu = true                                          -- Autocompletion list
+vim.opt.wildmode = 'list:longest'                                -- Complete files like a shell.
 vim.opt.wrap = true
-vim.opt.writebackup = false                  -- And again.
+vim.opt.writebackup = false                                      -- And again.
 
 vim.cmd('set directory=/tmp/')
 
@@ -81,7 +96,7 @@ vim.opt.wildignore = vim.tbl_extend('force', vim.opt.wildignore or {}, {
   'doc/**',
 })
 
-vim.opt.foldmethod = 'manual'             -- I don't always fold code, but when I do, I do it manually
+vim.opt.foldmethod = 'manual' -- I don't always fold code, but when I do, I do it manually
 
 -- Show Git diff in window split when committing
 vim.cmd('au FileType gitcommit DiffGitCached | wincmd L | wincmd p')
@@ -110,6 +125,13 @@ vim.cmd('autocmd BufWritePost lua/plugins.lua luafile lua/plugins.lua')
 
 -- Syntax highlighting doesn't work on elixir files without forcing it this way
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-    pattern = { "*.ex", "*.exs" },
-    command = "TSBufEnable highlight",
+  pattern = { "*.ex", "*.exs" },
+  command = "TSBufEnable highlight",
+})
+
+-- Use internal formatting for bindings like gq. null-ls or neovim messes this up somehow
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    vim.bo[args.buf].formatexpr = nil
+  end,
 })
