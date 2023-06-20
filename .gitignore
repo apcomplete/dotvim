@@ -1,3 +1,4 @@
 .luarc.json
 coc
 nvim/plugin/**
+lazy-lock.json
