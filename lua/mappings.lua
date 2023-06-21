@@ -55,3 +55,11 @@ vim.keymap.set('i', '<MiddleMouse>', '<Nop>')
 
 -- Save using sudo access
 vim.keymap.set('c', 'w!!', '%!sudo tee > /dev/null %')
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(args)
+    -- Use internal formatting for bindings like gq. null-ls or neovim messes this up somehow
+    vim.bo[args.buf].formatexpr = nil
+  end,
+})
