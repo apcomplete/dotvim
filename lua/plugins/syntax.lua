@@ -118,6 +118,7 @@ return {
         sync_install = false,
         -- Automatically install missing parsers when entering buffer
         ignore_install = { 'javascript' },
+        indent = { enable = true },
         auto_install = true,
         highlight = {
           enabled = true,
