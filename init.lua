@@ -137,8 +137,6 @@ vim.api.nvim_set_hl(0, "jsxTag", { link = "xmlTagName" })
 -- Pmenu is the context menu background for ctrl+K
 vim.api.nvim_set_hl(0, "Pmenu", { link = "Normal" })
 
-vim.cmd("autocmd BufWritePost lua/plugins.lua luafile lua/plugins.lua")
-
 -- Syntax highlighting doesn't work on elixir files without forcing it this way
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   pattern = { "*.ex", "*.exs" },
