@@ -47,7 +47,7 @@ vim.keymap.set('n', '<S-Right>', '<c-w>>', { noremap = true })
 vim.keymap.set('i', 'jj', '<Esc>')
 
 -- Clear highlighting for search
-vim.keymap.set('', '<silent><Leader>/', ':nohls<CR>', { noremap = true })
+vim.keymap.set('n', '<Leader>/', ':nohls<CR>', { noremap = true })
 
 -- Disable middle mouse click
 vim.keymap.set('', '<MiddleMouse>', '<Nop>')
