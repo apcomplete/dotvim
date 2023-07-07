@@ -32,8 +32,7 @@ require("lazy").setup({
     lazy = false,
     -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
     -- have outdated releases, which may break your Neovim install.
-    version = false, -- always use the latest git commit
-    -- version = "*", -- try installing the latest stable version for plugins that support semver
+     version = "*", -- try installing the latest stable version for plugins that support semver
   },
   checker = { enabled = true }, -- automatically check for plugin updates
 })
@@ -53,8 +52,7 @@ vim.opt.autoindent = true                                        -- Match indent
 vim.opt.backspace = "indent,eol,start"                           -- Make backspace work in insert mode
 vim.opt.backup = false                                           -- Don't make a backup before overwriting a file.
 vim.opt.cmdheight = 2                                            -- Give more space for displaying messages.
-vim.opt.display =
-"lastline"                                                       -- When lines are cropped at the screen bottom, show as much as possible
+vim.opt.display = "lastline"                                     -- When lines are cropped at the screen bottom, show as much as possible
 vim.opt.expandtab = true                                         -- Use spaces instead of tabs because we're not a monster
 vim.opt.gdefault = true                                          -- Assume the /g flag on substitutions to replace all matches in a line
 vim.opt.guicursor = "a:blinkon0"                                 -- Don't blink the cursor
@@ -136,12 +134,6 @@ vim.api.nvim_set_hl(0, "jsxComponentName", { link = "xmlTagName" })
 vim.api.nvim_set_hl(0, "jsxTag", { link = "xmlTagName" })
 -- Pmenu is the context menu background for ctrl+K
 vim.api.nvim_set_hl(0, "Pmenu", { link = "Normal" })
-
--- Syntax highlighting doesn't work on elixir files without forcing it this way
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  pattern = { "*.ex", "*.exs" },
-  command = "TSBufEnable highlight",
-})
 
 -- Use internal formatting for bindings like gq. null-ls or neovim messes this up somehow
 vim.api.nvim_create_autocmd("LspAttach", {
