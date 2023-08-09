@@ -13,9 +13,8 @@ return {
           'jsonls',
           'marksman', -- markdown
           'pyright',
-          'ruby_ls',
+          --'ruby_ls',
           'sqlls',
-          'lua_ls',
         },
         automatic_installation = true,
       })
@@ -52,20 +51,17 @@ return {
       lspconfig.html.setup({ flags = lsp_flags, on_attach = on_attach })
       lspconfig.jsonls.setup({ flags = lsp_flags, on_attach = on_attach })
       lspconfig.marksman.setup({ flags = lsp_flags, on_attach = on_attach }) -- markdown
-      lspconfig.pyright.setup({ flags = lsp_flags, on_attach = on_attach })
+      lspconfig.pyright.setup({ 
+        settings =  { 
+          python = {
+            analysis = {
+              typeCheckingMode = "off"
+            }
+          }
+        },
+        flags = lsp_flags, on_attach = on_attach })
       lspconfig.ruby_ls.setup({ flags = lsp_flags, on_attach = on_attach })
       lspconfig.sqlls.setup({ flags = lsp_flags, on_attach = on_attach })
-      lspconfig.lua_ls.setup({
-        flags = lsp_flags,
-        settings = {
-          Lua = {
-            diagnostics = {
-              -- Get the language server to recognize the `vim` global
-              globals = { 'vim' },
-            },
-          },
-        },
-      })
     end
   },
   {

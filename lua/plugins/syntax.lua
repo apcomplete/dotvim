@@ -7,7 +7,7 @@ return {
     },
     config = function()
       local b = require('null-ls.builtins')
-      -- local lsp_format = require('lsp-format')
+      local lsp_format = require('lsp-format')
       require('null-ls').setup({
         sources = {
           ----------------------
@@ -69,24 +69,19 @@ return {
           -- b.formatting.stylua,
 
           -- python
-          --b.diagnostics.flake8.with {
-          --command = '.venv/bin/flake8',
-          --},
-          -- b.formatting.isort.with {
-          --   command = '.venv/bin/isort',
-          -- },
-          -- b.formatting.black.with {
-          --   command = '.venv/bin/black',
-          -- },
+          --b.diagnostics.flake8,
+          --b.formatting.isort,
+          b.formatting.black,
         },
-        -- on_attach = function(client)
-        --   if client.supports_method 'textDocument/formatting' then
-        --     lsp_format.on_attach(client)
-        --   end
-        -- end,
+        on_attach = function(client)
+          if client.supports_method 'textDocument/formatting' then
+            lsp_format.on_attach(client)
+          end
+        end,
       })
     end
   },
+  { 'mechatroner/rainbow_csv' },
   {
     'nvim-treesitter/nvim-treesitter',
     version = false,

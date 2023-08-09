@@ -98,6 +98,7 @@ vim.opt.clipboard = "unnamedplus"
 -- ignore on completions, used by command-t at least, likely others
 vim.opt.wildignore = vim.tbl_extend("force", vim.opt.wildignore or {}, {
   ".git",
+  "venv/**",
   "vendor/bundle/**",
   "log/**",
   "tmp/**",
