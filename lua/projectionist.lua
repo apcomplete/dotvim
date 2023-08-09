@@ -4,30 +4,42 @@ local config = {
   ["package.json"] = {
     ["*.ts"] = {
       type = "test",
-      alternate = { "{}.test.ts", "{}.test.js" }
+      alternate = { "{}.test.ts", "{}.test.js", "{}.spec.js", "{}.spec.ts" }
     },
     ["*.tsx"] = {
+      type = "src",
+      alternate = { "{}.test.tsx", "{}.test.ts", "{}.test.js", "{}.spec.tsx", "{}.spec.ts", "{}.spec.js", "{}.spec.jsx" }
+    },
+    ["*.spec.tsx"] = {
       type = "test",
-      alternate = { "{}.test.tsx", "{}.test.ts", "{}.test.js" }
+      alternate = { "{}.ts", "{}.tsx" }
+    },
+    ["*.spec.ts"] = {
+      type = "test",
+      alternate = { "{}.ts", "{}.tsx" }
     },
     ["*.test.tsx"] = {
-      type = "src",
+      type = "test",
       alternate = { "{}.ts", "{}.tsx" }
     },
     ["*.test.ts"] = {
-      type = "src",
+      type = "test",
       alternate = { "{}.ts", "{}.tsx" }
     },
     ["*.js"] = {
-      type = "test",
+      type = "src",
       alternate = "{}.test.js"
     },
     ["*.jsx"] = {
-      type = "test",
+      type = "src",
       alternate = "{}.test.js"
     },
     ["*.test.js"] = {
-      type = "src",
+      type = "test",
+      alternate = { "{}.js", "{}.jsx", "{}.ts", "{}.tsx" }
+    },
+    ["*.spec.js"] = {
+      type = "test",
       alternate = { "{}.js", "{}.jsx", "{}.ts", "{}.tsx" }
     },
   }
