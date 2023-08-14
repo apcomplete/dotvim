@@ -42,6 +42,14 @@ local config = {
       type = "test",
       alternate = { "{}.js", "{}.jsx", "{}.ts", "{}.tsx" }
     },
+    ["*.py"] = {
+      type = "src",
+      alternate = { "{dirname}/test_{basename}.py" }
+    },
+    ["**/test_*.py"] = {
+      type = "test",
+      alternate = { "{dirname}/{basename}.py" }
+    },
   }
 }
 
