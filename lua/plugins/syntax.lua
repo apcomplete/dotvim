@@ -63,10 +63,26 @@ return {
           --return extra_args
           --end,
           --},
-          --b.formatting.pg_format,
-          b.formatting.prettier,
+          b.formatting.pg_format,
+          b.formatting.prettier.with {
+            filetypes = {
+              "javascript",
+              "javascriptreact",
+              "typescript",
+              "typescriptreact",
+              "vue",
+              "css",
+              "scss",
+              "less",
+              "html",
+              "json",
+              "jsonc",
+              "graphql",
+              "handlebars",
+            },
+          },
           -- b.formatting.shfmt,
-          -- b.formatting.stylua,
+          b.formatting.stylua,
 
           -- python
           --b.diagnostics.flake8,
@@ -119,6 +135,7 @@ return {
         'markdown',
         'python',
         'scss',
+        'sql',
         'tsx',
         'typescript',
       },
