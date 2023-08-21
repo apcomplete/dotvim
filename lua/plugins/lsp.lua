@@ -51,8 +51,8 @@ return {
       lspconfig.html.setup({ flags = lsp_flags, on_attach = on_attach })
       lspconfig.jsonls.setup({ flags = lsp_flags, on_attach = on_attach })
       lspconfig.marksman.setup({ flags = lsp_flags, on_attach = on_attach }) -- markdown
-      lspconfig.pyright.setup({ 
-        settings =  { 
+      lspconfig.pyright.setup({
+        settings =  {
           python = {
             analysis = {
               typeCheckingMode = "off"
@@ -71,8 +71,8 @@ return {
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope.nvim" },
     },
-    config = function()
-      require("telescope").load_extension("yaml_schema")
-    end,
+    opts = {
+      format = { enable = false },
+    }
   },
 }
