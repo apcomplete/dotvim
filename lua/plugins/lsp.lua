@@ -8,6 +8,7 @@ return {
           'bashls',
           'cssls',
           'dockerls',
+          'eslint',
           --'elixirls',
           'html',
           'jsonls',
@@ -62,6 +63,30 @@ return {
         flags = lsp_flags, on_attach = on_attach })
       lspconfig.ruby_ls.setup({ flags = lsp_flags, on_attach = on_attach })
       lspconfig.sqlls.setup({ flags = lsp_flags, on_attach = on_attach })
+      lspconfig.eslint.setup({
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+        },
+        settings = {
+          codeAction = {
+            disableRuleComment = { enable = true, location = "separateLine" },
+            showDocumentation = { enable = true },
+          },
+          onIgnoredFiles = "off",
+          options = {
+            cache = true,
+            useEslintrc = true,
+          },
+          packageManager = "npm",
+          quiet = false,
+          run = "onSave",
+          validate = "on",
+          workingDirectory = { mode = "auto" },
+        },
+      })
     end
   },
   {

@@ -13,7 +13,7 @@ return {
           ----------------------
           --   Code Actions   --
           ----------------------
-          b.code_actions.eslint,
+          -- b.code_actions.eslint,
           --b.code_actions.shellcheck,
 
           ----------------------
@@ -35,7 +35,7 @@ return {
               return not credo_installed
             end,
           },
-          b.diagnostics.eslint,
+          -- b.diagnostics.eslint,
           -- b.diagnostics.yamllint,
           -- b.diagnostics.cfn_lint,
           -- require 'plugins.null-ls.commitlint',
@@ -86,8 +86,8 @@ return {
 
           -- python
           --b.diagnostics.flake8,
-          --b.formatting.isort,
-          b.formatting.black,
+          b.formatting.autoflake,
+          b.formatting.black
         },
         on_attach = function(client)
           if client.supports_method 'textDocument/formatting' then
@@ -110,7 +110,7 @@ return {
         enable = true,
         --disable highlighting for large files
         disable = function(lang, buf)
-          local max_filesize = 100 * 1024 -- 100 KB
+          local max_filesize = 500 * 1024 -- 500 KB
           local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
           if ok and stats and stats.size > max_filesize then
             return true
