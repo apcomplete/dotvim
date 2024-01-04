@@ -87,6 +87,7 @@ vim.opt.wildmenu = true                                          -- Autocompleti
 vim.opt.wildmode = "list:longest"                                -- Complete files like a shell.
 vim.opt.wrap = true
 vim.opt.writebackup = false                                      -- And again.
+vim.opt.textwidth = 120
 
 vim.cmd("set directory=/tmp/")
 
