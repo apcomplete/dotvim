@@ -16,6 +16,7 @@ return {
     config = function()
       vim.g.ackprg = 'rg --vimgrep --smart-case'
       vim.cmd('cnoreabbrev Ack Ack!')
+      vim.cmd('cnoreabbrev ack Ack!')
       vim.opt.grepprg = 'rg --vimgrep --smart-case --hidden'
     end
   },
