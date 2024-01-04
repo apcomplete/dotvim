@@ -4,11 +4,11 @@ local config = {
   ["package.json"] = {
     ["*.ts"] = {
       type = "test",
-      alternate = { "{}.test.ts", "{}.test.js", "{}.spec.js", "{}.spec.ts" }
+      alternate = { "{}.spec.js", "{}.spec.ts" }
     },
     ["*.tsx"] = {
       type = "src",
-      alternate = { "{}.test.tsx", "{}.test.ts", "{}.test.js", "{}.spec.tsx", "{}.spec.ts", "{}.spec.js", "{}.spec.jsx" }
+      alternate = { "{}.spec.tsx", "{}.spec.ts", "{}.spec.js", "{}.spec.jsx" }
     },
     ["*.spec.tsx"] = {
       type = "test",
@@ -28,11 +28,11 @@ local config = {
     },
     ["*.js"] = {
       type = "src",
-      alternate = "{}.test.js"
+      alternate = { "{}.spec.tsx", "{}.spec.ts", "{}.spec.js", "{}.spec.jsx" }
     },
     ["*.jsx"] = {
       type = "src",
-      alternate = "{}.test.js"
+      alternate = { "{}.spec.tsx", "{}.spec.ts", "{}.spec.js", "{}.spec.jsx" }
     },
     ["*.test.js"] = {
       type = "test",
