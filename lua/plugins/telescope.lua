@@ -14,7 +14,7 @@ return {
           mappings = {
             i = {
               -- Use Ctrl+U to clear the search input
-              ["<C-u>"] = false
+              ['<C-u>'] = false
             },
           },
         }

@@ -66,19 +66,19 @@ return {
           b.formatting.pg_format,
           b.formatting.prettier.with {
             filetypes = {
-              "javascript",
-              "javascriptreact",
-              "typescript",
-              "typescriptreact",
-              "vue",
-              "css",
-              "scss",
-              "less",
-              "html",
-              "json",
-              "jsonc",
-              "graphql",
-              "handlebars",
+              'javascript',
+              'javascriptreact',
+              'typescript',
+              'typescriptreact',
+              'vue',
+              'css',
+              'scss',
+              'less',
+              'html',
+              'json',
+              'jsonc',
+              'graphql',
+              'handlebars',
             },
           },
           -- b.formatting.shfmt,
@@ -101,10 +101,10 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     version = false,
-    build = ":TSUpdate",
+    build = ':TSUpdate',
     dependencies = { 'nvim-treesitter/playground' },
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSUpdateSync" },
+    event = { 'BufReadPost', 'BufNewFile' },
+    cmd = { 'TSUpdateSync' },
     opts = {
       highlight = {
         enable = true,
@@ -119,7 +119,7 @@ return {
         additional_vim_regex_highlighting = true,
       },
       indent = { enable = true },
-      -- A list of parser names, or "all"
+      -- A list of parser names, or 'all'
       ensure_installed = {
         'bash',
         'comment',
@@ -142,7 +142,7 @@ return {
     },
     ---@param opts TSConfig
     config = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
+      if type(opts.ensure_installed) == 'table' then
         ---@type table<string, boolean>
         local added = {}
         opts.ensure_installed = vim.tbl_filter(function(lang)
@@ -153,17 +153,17 @@ return {
           return true
         end, opts.ensure_installed)
       end
-      require("nvim-treesitter.configs").setup(opts)
+      require('nvim-treesitter.configs').setup(opts)
 
       if load_textobjects then
         -- PERF: no need to load the plugin, if we only need its queries for mini.ai
         if opts.textobjects then
-          for _, mod in ipairs({ "move", "select", "swap", "lsp_interop" }) do
+          for _, mod in ipairs({ 'move', 'select', 'swap', 'lsp_interop' }) do
             if opts.textobjects[mod] and opts.textobjects[mod].enable then
-              local Loader = require("lazy.core.loader")
-              Loader.disabled_rtp_plugins["nvim-treesitter-textobjects"] = nil
-              local plugin = require("lazy.core.config").plugins["nvim-treesitter-textobjects"]
-              require("lazy.core.loader").source_runtime(plugin.dir, "plugin")
+              local Loader = require('lazy.core.loader')
+              Loader.disabled_rtp_plugins['nvim-treesitter-textobjects'] = nil
+              local plugin = require('lazy.core.config').plugins['nvim-treesitter-textobjects']
+              require('lazy.core.loader').source_runtime(plugin.dir, 'plugin')
               break
             end
           end

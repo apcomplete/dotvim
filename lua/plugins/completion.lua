@@ -1,5 +1,11 @@
 -- -- ========== Completion ============
 -- Snippets, need to understand more about how to use this
+local has_words_before = function()
+  if vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt' then return false end
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match('^%s*$') == nil
+end
+
 return {
   {
     'L3MON4D3/LuaSnip',
@@ -34,6 +40,7 @@ return {
           end
         },
         sources = {
+          { name = 'copilot' },
           { name = 'path' },
           { name = 'nvim_lsp', keyword_length = 3 },
           { name = 'buffer',   keyword_length = 3 },
@@ -60,7 +67,6 @@ return {
           ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
           ['<Down>'] = cmp.mapping.select_next_item(select_opts),
           ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
-          ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
           ['<C-u>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<C-e>'] = cmp.mapping.abort(),
@@ -79,10 +85,21 @@ return {
               fallback()
             end
           end, { 'i', 's' }),
+          ['<C-n>'] = cmp.mapping(function(fallback)
+            local col = vim.fn.col('.') - 1
+
+            if cmp.visible() and has_words_before() then
+              cmp.select_next_item(select_opts)
+            elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+              fallback()
+            else
+              cmp.complete()
+            end
+          end, { 'i', 's' }),
           ['<Tab>'] = cmp.mapping(function(fallback)
             local col = vim.fn.col('.') - 1
 
-            if cmp.visible() then
+            if cmp.visible() and has_words_before() then
               cmp.select_next_item(select_opts)
             elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
               fallback()

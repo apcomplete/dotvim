@@ -1,9 +1,9 @@
 return {
   {
-    "williamboman/mason.nvim",
+    'williamboman/mason.nvim',
     config = function()
       require('mason').setup()
-      require("mason-lspconfig").setup({
+      require('mason-lspconfig').setup({
         ensure_installed = {
           'bashls',
           'cssls',
@@ -21,9 +21,9 @@ return {
       })
     end
   },
-  "williamboman/mason-lspconfig.nvim",
+  'williamboman/mason-lspconfig.nvim',
   {
-    "neovim/nvim-lspconfig",
+    'neovim/nvim-lspconfig',
     config = function()
       -- Mappings.
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -56,7 +56,7 @@ return {
         settings =  {
           python = {
             analysis = {
-              typeCheckingMode = "off"
+              typeCheckingMode = 'off'
             }
           }
         },
@@ -65,36 +65,36 @@ return {
       lspconfig.sqlls.setup({ flags = lsp_flags, on_attach = on_attach })
       lspconfig.eslint.setup({
         filetypes = {
-          "javascript",
-          "javascriptreact",
-          "typescript",
-          "typescriptreact",
+          'javascript',
+          'javascriptreact',
+          'typescript',
+          'typescriptreact',
         },
         settings = {
           codeAction = {
-            disableRuleComment = { enable = true, location = "separateLine" },
+            disableRuleComment = { enable = true, location = 'separateLine' },
             showDocumentation = { enable = true },
           },
-          onIgnoredFiles = "off",
+          onIgnoredFiles = 'off',
           options = {
             cache = true,
             useEslintrc = true,
           },
-          packageManager = "npm",
+          packageManager = 'npm',
           quiet = false,
-          run = "onSave",
-          validate = "on",
-          workingDirectory = { mode = "auto" },
+          run = 'onSave',
+          validate = 'on',
+          workingDirectory = { mode = 'auto' },
         },
       })
     end
   },
   {
-    "someone-stole-my-name/yaml-companion.nvim",
+    'someone-stole-my-name/yaml-companion.nvim',
     dependencies = {
-      { "neovim/nvim-lspconfig" },
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-telescope/telescope.nvim" },
+      { 'neovim/nvim-lspconfig' },
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-telescope/telescope.nvim' },
     },
     opts = {
       format = { enable = false },
